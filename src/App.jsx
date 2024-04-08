@@ -1,11 +1,14 @@
 import { useState } from "react";
 import logo from "./logo.svg";
-import "./App.css";
+import "./output.css";
+import Dashboard from "./compontents/Dashboard.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return (
+    <>
+      <Dashboard name={"Jonathan"} currentExcercise={"Exc3"} />
+    </>
+  );
 }
 
 export default App;
