@@ -12,19 +12,17 @@ module.exports = {
           "linear-gradient(315deg, #3A4AE4 0%, #3B85E6 21.35%, #3EE4E8 73.44%, #3EF3E8 92.71%)",
       },
       fontFamily: {
-        sans: ["Poppins", "sans-serif"],
+        app: "Poppins, sans-serif",
       },
-      fontSize: {
-        xxl: "2.25rem",
-        xl: "1.5rem",
-        l: "1.125rem",
-        m: "1rem",
-        s: "0.75rem",
-        xs: "0.5rem",
-      },
+      fontSize: {},
       fontWeight: {
         bold: 700,
         regular: 400,
+      },
+      spacing: {
+        13: "3.25rem",
+        53.75: "13.4375rem",
+        93.75: "23.4375rem",
       },
     },
   },
