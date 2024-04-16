@@ -20,9 +20,15 @@ module.exports = {
         regular: 400,
       },
       spacing: {
+        4.5: "1.125rem",
+        12.5: "3.125rem",
         13: "3.25rem",
+        18: "4.5rem",
         53.75: "13.4375rem",
         93.75: "23.4375rem",
+      },
+      borderRadius: {
+        "2.5xl": "1.25rem",
       },
     },
   },
