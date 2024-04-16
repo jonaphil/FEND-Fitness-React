@@ -45,16 +45,10 @@ function ContentList({
   return (
     <ul className="p-5 flex flex-col items-center gap-5">
       {data.programs.map((program, index) => {
-        const content = (
-          <>
-            <h3>{program.name}</h3>
-            <p>{program.duration} Weeks</p>
-          </>
-        );
         return (
           <li key={index.toString()}>
             <Card bgColor={genBackground(index % 3)} justify={"center"}>
-              {content}
+              <h2>{program.name}</h2>
             </Card>
           </li>
         );
