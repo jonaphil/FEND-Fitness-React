@@ -1,12 +1,12 @@
-import { useState } from "react";
-import logo from "./logo.svg";
 import "./output.css";
-import Dashboard from "./compontents/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import ExcerciseList from "./pages/ExcerciseList.jsx";
 
 function App() {
   return (
-    <div className="max-w-[414px] max-h-[736px]">
-      <Dashboard name={"Jonathan"} currentExcercise={"Exc3"} />
+    <div className="w-[414px] h-[736px]">
+      <Dashboard name={"Name"} currentExcercise={"Exc3"} />
+      {/* <ExcerciseList /> */}
     </div>
   );
 }
