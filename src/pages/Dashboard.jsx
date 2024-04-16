@@ -1,5 +1,5 @@
 import "../output.css";
-import Navi from "./Navi.jsx";
+import Navi from "../components/Navi.jsx";
 
 export default function Dashboard({ name, currentExcercise }) {
   //  const { name, currentExcercise } = profileObj; //? Why not working?
