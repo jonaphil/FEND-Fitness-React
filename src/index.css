@@ -33,23 +33,3 @@ h2 {
 h3 {
   font-size: 1.125rem;
 }
-
-/* TODO Gradients in tailwind-config */
-.bg-gradient-red {
-  @apply bg-gradient-to-br from-[#FF99C4] to-[#FFD162];
-}
-
-.bg-gradient-green {
-  @apply bg-gradient-to-br from-[#F5FFA0] to-[#3EF3E8];
-}
-
-.bg-gradient-blue {
-  /* @apply bg-gradient-to-br from-[#3A4AE4] via-[#3B85E6] via-[#3EE4E8] to-[#3EF3E8]; */
-  background: linear-gradient(
-    315deg,
-    #3a4ae4 0%,
-    #3b85e6 21.35%,
-    #3ee4e8 73.44%,
-    #3ef3e8 92.71%
-  );
-}
