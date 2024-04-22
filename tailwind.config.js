@@ -1,10 +1,6 @@
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  sefelist: [
-    'bg-gradient-red',
-    'bg-gradient-green',
-    'bg-gradient-blue'
-  ],
+  safelist: ["bg-gradient-red", "bg-gradient-green", "bg-gradient-blue"],
   theme: {
     extend: {
       colors: {
