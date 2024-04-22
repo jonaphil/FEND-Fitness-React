@@ -10,6 +10,10 @@ import {
   gql,
 } from "@apollo/client";
 
+import Dashboard from "./pages/Dashboard";
+import ExcerciseList from "./pages/ExcerciseList";
+import Profile from "./pages/Profile";
+
 // React general
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -18,8 +22,17 @@ const root = createRoot(container);
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Dashboard name={"Name"} currentExcercise={"Exc3"} />,
+    
   },
+  {
+    path: "/excercise-list",
+    element: <ExcerciseList/>,
+  },
+  {
+    path: "/profile",
+    element: <Profile/>,
+  }
 ]);
 
 //Apollo TODO
