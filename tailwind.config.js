@@ -1,6 +1,14 @@
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  safelist: ["bg-gradient-red", "bg-gradient-green", "bg-gradient-blue"],
+  safelist: [
+    "bg-gradient-red",
+    "bg-gradient-green",
+    "bg-gradient-blue",
+    "bg-dmedium",
+    "h-fit",
+    "h-full",
+    "h-53.75",
+  ],
   theme: {
     extend: {
       colors: {
@@ -23,6 +31,7 @@ module.exports = {
         17.5: "4.375rem",
         18: "4.5rem",
         25: "6.25rem",
+        30: "7.5rem",
         53.75: "13.4375rem",
         93.75: "23.4375rem",
       },
