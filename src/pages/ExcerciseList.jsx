@@ -1,16 +1,8 @@
 import Navi from "../components/Navi";
 import Card from "../components/Card";
 import { gql, useQuery } from "@apollo/client";
-
-const GET_PROGRAMS = gql`
-  query GetPrograms {
-    programs {
-      id
-      name
-      duration
-    }
-  }
-`;
+import { getProgramsList } from "../queries/programsList";
+import CardList from "../components/CardList";
 
 // function Card({ content, backgroundColor }) {
 //   return (
@@ -20,9 +12,7 @@ const GET_PROGRAMS = gql`
 //   );
 // }
 
-function ContentList({
-  contentArray = ["Content1", "Content2", "Content3", "Content4"],
-}) {
+function ContentList() {
   const genBackground = (int) => {
     switch (int) {
       case 0:
@@ -34,17 +24,13 @@ function ContentList({
     }
   };
 
-  const { loading, error, data } = useQuery(GET_PROGRAMS);
+  const programs = getProgramsList();
 
-  if (loading) return <Card content="Loading..." backgroundColor="blue" />;
-  if (error)
-    return <Card content={`Error! ${error.message}`} backgroundColor="red" />;
-
-  console.log(data.programs);
+  console.log(programs);
 
   return (
-    <ul className="p-5 flex flex-col items-center gap-5">
-      {data.programs.map((program, index) => {
+    <ul className="p-5 mb-12.5 flex flex-col items-center gap-5">
+      {programs.map((program, index) => {
         return (
           <li key={index.toString()}>
             <Card bgColor={genBackground(index % 3)} justify={"center"}>
@@ -58,12 +44,13 @@ function ContentList({
 }
 
 export default function ExcerciseList() {
+  const programs = getProgramsList();
   return (
-    <div className="relative bg-ddark flex flex-col gap-6 h-full w-full">
+    <div className="relative bg-ddark flex flex-col gap-6 h-full w-full overflow-scroll">
       <div className="pl-4 pr-5 pt-10 flex flex-col items-start gap-3">
         <h2 className="">Browse</h2>
       </div>
-      <ContentList />
+      <CardList listArray={programs} />
       <Navi activeButton={"dumbbell"} />
     </div>
   );
