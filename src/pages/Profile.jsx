@@ -7,24 +7,26 @@ export default function Profile() {
   This Component is just a sketch, to have a working page. There are real components Missing, especially the progress-card
   */
   return (
-    <MainScreen page={"profile"} >
+    <MainScreen page={"profile"}>
       <h2 className="self-start">Name</h2>
-      <div className="flex flex-col items-center mt-12 mb-20 gap-2">
+      <div className="mb-20 mt-12 flex flex-col items-center gap-2">
         <img
-          className="bg-gradient-blue w-30 h-30 rounded-full"
+          className="h-30 w-30 rounded-full bg-gradient-blue"
           src=""
           alt=""
         />
         <p>Profil bearbeiten</p>
       </div>
-      <div className="w-full flex flex-col gap-2">
+      <div className="flex w-full flex-col gap-2">
         <p>Aktueller Trainingsplan</p>
-        <Card size={"s"} bgColor={"dmedium"}>
-            <div className="w-15 h-15">Progress</div>
+        <Card size={"s"} bgColor={"dmedium"} shadow={"m-strong"}>
+          <div className="flex flex-row gap-6">
+            <div className="h-16 w-16 bg-gradient-blue">40%</div>
             <div className="flex flex-col">
               <p>Titel</p>
               <p className="text-xs">1 von 8 geschafft</p>
             </div>
+          </div>
         </Card>
       </div>
     </MainScreen>

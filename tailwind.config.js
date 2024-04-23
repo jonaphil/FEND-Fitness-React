@@ -8,6 +8,14 @@ module.exports = {
     "h-fit",
     "h-full",
     "h-53.75",
+    "p-12.5",
+    "pb-8",
+    "pl-5",
+    "pr-5",
+    "pt-7",
+    "shadow-m",
+    "shadow-m-strong",
+    "shadow-l",
   ],
   theme: {
     extend: {
@@ -43,6 +51,11 @@ module.exports = {
         "gradient-green": "linear-gradient(315deg, #F5FFA0 0%, #3EF3E8 100%)",
         "gradient-blue":
           "linear-gradient(315deg, #3A4AE4 0%, #3B85E6 21.35%, #3EE4E8 73.44%, #3EF3E8 92.71%)",
+      },
+      boxShadow: {
+        m: "0px 3px 10px rgba(0, 0, 0, 0.25)",
+        "m-strong": "0px 3px 10px rgba(0, 0, 0, 0.35)",
+        l: "2px 5px 10px rgba(0, 0, 0, 0.25)",
       },
     },
   },
