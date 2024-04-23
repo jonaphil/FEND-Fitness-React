@@ -18,6 +18,7 @@ module.exports = {
     "shadow-m",
     "shadow-m-strong",
     "shadow-l",
+    "border-dlight",
   ],
   theme: {
     extend: {
