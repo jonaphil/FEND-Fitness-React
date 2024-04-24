@@ -3,6 +3,8 @@ import { useState } from "react";
 import Card from "../components/Card";
 import { ddark, dmedium, dlight } from "../styles/variables";
 import ProgressCircle from "../components/ProgressCircle";
+import "chart.js/auto";
+import { Doughnut } from "react-chartjs-2";
 
 export default function HelloWorld() {
   const [percentage, setPercentage] = useState(40);
@@ -32,6 +34,23 @@ export default function HelloWorld() {
           <h2>-</h2>
         </button>
       </div>
+      <Doughnut
+        data={{
+          labels: ["Red", "Blue", "Yellow"],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [100 / (percentage * 0.1), percentage, 100 - percentage],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        }}
+      />
     </MainScreen>
   );
 }
