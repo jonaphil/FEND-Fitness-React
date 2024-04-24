@@ -12,11 +12,19 @@ export default function CardList({ listArray }) {
     }
   };
 
+  if (listArray.length === 0) {
+    return (
+      <Card bgColor="dmedium" justify={"center"}>
+        <h3>Loading</h3>
+      </Card>
+    );
+  }
+
   return (
-    <ul className="p-5 mb-12.5 flex flex-col items-center gap-5">
+    <ul className="flex w-full flex-col items-center gap-5">
       {listArray.map((item, index) => {
         return (
-          <li key={index.toString()}>
+          <li key={index.toString()} className="w-full">
             <Card bgColor={genBackground(index % 3)} justify={"center"}>
               <h2>{item.name}</h2>
             </Card>

@@ -15,8 +15,11 @@ export function getProgramsList() {
 
   const { loading, error, data } = useQuery(GET_PROGRAMS);
 
-  if (loading) return ["Loading..."];
-  if (error) return [error.message];
+  if (loading) return [];
+  if (error) {
+    console.log(error.message);
+    return [{ name: "Error" }];
+  }
 
   return data.programs;
 }

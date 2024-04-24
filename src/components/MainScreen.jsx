@@ -1,11 +1,11 @@
 import Navi from "./Navi";
 
 export default function MainScreen({ page = "home", children }) {
-  const pageButton = page === "browseList" ? "dumbbell" : page;
+  const pageButton = page === "excerciseList" ? "dumbbell" : page;
 
   return (
-    <div className="h-full w-full bg-ddark relative">
-      <div className="h-full pt-10 pl-4 pr-4.5 pb-18 flex flex-col gap-3 items-center justify-center box-border">
+    <div className="relative min-h-screen w-full bg-ddark">
+      <div className="relative box-border flex h-full flex-col items-center justify-center gap-3 pb-17.5 pl-4 pr-4.5 pt-10">
         {children}
       </div>
 

@@ -10,21 +10,19 @@ export default function Dashboard({ name, currentExcercise }) {
   return (
     <MainScreen page={"home"}>
       <h1 className="self-start">Hi {name}!</h1>
-      <div className="h-18 flex-shrink"></div>
       <img
-        className="self-center"
+        className="mb-6 mt-3 self-center"
         src="../media/images/Layer 11 1.png"
         alt="Picture of a human, stretching in the morning"
       />
-      <div className="h-36 flex-shrink"></div>
-      <div className="self-stretch flex justify-between items-center justify-self-center">
+      <div className="flex items-center justify-between self-stretch justify-self-center">
         <h2>Dein Workout heute</h2>
         <a href="Trainingsplan" className="text-xs">
           Trainingsplan
         </a>
       </div>
 
-      <Card bgColor={"dmedium"} justify={"end"}>
+      <Card bgColor={"dmedium"} justify={"end"} shadow={"l"}>
         <h3>Tag 2</h3>
         <h2>Titel des Programms</h2>
         <p>26 min - Beweglichkeit</p>
