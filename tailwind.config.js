@@ -1,6 +1,8 @@
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   safelist: [
+    // This is needed for classes which are dynamically named and applied so tailwind doesn't know beforehand they are used.
+    // This is for the Card Component
     "bg-gradient-red",
     "bg-gradient-green",
     "bg-gradient-blue",
@@ -16,7 +18,6 @@ module.exports = {
     "shadow-m",
     "shadow-m-strong",
     "shadow-l",
-    "border-dlight",
   ],
   theme: {
     extend: {
