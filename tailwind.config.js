@@ -16,6 +16,7 @@ module.exports = {
     "shadow-m",
     "shadow-m-strong",
     "shadow-l",
+    "border-dlight",
   ],
   theme: {
     extend: {
@@ -56,6 +57,7 @@ module.exports = {
         m: "0px 3px 10px rgba(0, 0, 0, 0.25)",
         "m-strong": "0px 3px 10px rgba(0, 0, 0, 0.35)",
         l: "2px 5px 10px rgba(0, 0, 0, 0.25)",
+        inside: "0px 0px 2px 5px #000000 inset",
       },
     },
   },
