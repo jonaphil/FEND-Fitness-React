@@ -1,1 +1,6 @@
-export const [ddark, dmedium, dlight] = ["#202430", "#3A4151", "#FBFBFB"];
+export const colors = {
+  ddark: "#202430",
+  dmedium: "#3A4151",
+  dlight: "#FBFBFB",
+  svgGradientRed: "url(#gradientRed)",
+};
