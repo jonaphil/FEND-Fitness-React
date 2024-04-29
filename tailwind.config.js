@@ -19,6 +19,12 @@ module.exports = {
     "shadow-m-strong",
     "shadow-l",
     "border-dlight",
+    
+    //Progress Circles
+    "w-15.5",
+    "w-58.5",
+    "h-15.5",
+    "h-58.5",
   ],
   theme: {
     extend: {
@@ -39,11 +45,13 @@ module.exports = {
         4.5: "1.125rem",
         12.5: "3.125rem",
         13: "3.25rem",
+        15.5: "3.875rem",
         17.5: "4.375rem",
         18: "4.5rem",
         25: "6.25rem",
         30: "7.5rem",
         53.75: "13.4375rem",
+        58.5: "14.625rem",
         93.75: "23.4375rem",
       },
       borderRadius: {
