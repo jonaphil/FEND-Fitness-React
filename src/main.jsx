@@ -1,14 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import Dashboard from "./pages/Dashboard";
 import ExcerciseList from "./pages/ExcerciseList";
@@ -42,6 +36,7 @@ const router = createBrowserRouter([
     path:"/program/:programId",
     element: <ProgramDetails/>
   }
+
 ]);
 
 //Apollo TODO
