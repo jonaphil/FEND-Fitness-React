@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import ExcerciseList from "./pages/ExcerciseList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
+import ProgramDetails from "./pages/ProgramDetails";
 
 // React general
 const container = document.getElementById("root");
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     path: "/hello-world",
     element: <HelloWorld percentage={40} />,
   },
+  {
+    path:"/program/:programId",
+    element: <ProgramDetails/>
+  }
 ]);
 
 //Apollo TODO

@@ -7,6 +7,7 @@ export default function Dashboard({ name, currentExcercise }) {
   //  const { name, currentExcercise } = profileObj; //? Why not working?
   console.log(name);
   console.log(currentExcercise);
+  //TODO Rework dashboard, svg, Links, etc.
   return (
     <MainScreen page={"home"}>
       <h1 className="self-start">Hi {name}!</h1>
