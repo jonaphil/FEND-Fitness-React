@@ -9,6 +9,7 @@ import ExcerciseList from "./pages/ExcerciseList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
 import ProgramDetails from "./pages/ProgramDetails";
+import Secrets from "./helpers/Secrets";
 
 // React general
 const container = document.getElementById("root");
@@ -33,10 +34,13 @@ const router = createBrowserRouter([
     element: <HelloWorld percentage={40} />,
   },
   {
-    path:"/program/:programId",
-    element: <ProgramDetails/>
-  }
-
+    path: "/program/:programId",
+    element: <ProgramDetails />,
+  },
+  {
+    path: "/secrets",
+    element: <Secrets />,
+  },
 ]);
 
 //Apollo TODO
