@@ -5,11 +5,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import Dashboard from "./pages/Dashboard";
-import ExcerciseList from "./pages/ExcerciseList";
+import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
 import ProgramDetails from "./pages/ProgramDetails";
-import Secrets from "./helpers/Secrets";
+import CreateEntries from "./helpers/CreateEntries";
 
 // React general
 const container = document.getElementById("root");
@@ -22,12 +22,16 @@ const router = createBrowserRouter([
     element: <Dashboard name={"Name"} currentExcercise={"Exc3"} />,
   },
   {
-    path: "/excercise-list",
-    element: <ExcerciseList />,
+    path: "/programs-list",
+    element: <ProgramsList />,
   },
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/options",
+    element: <CreateEntries />,
   },
   {
     path: "/hello-world",
@@ -36,10 +40,6 @@ const router = createBrowserRouter([
   {
     path: "/program/:programId",
     element: <ProgramDetails />,
-  },
-  {
-    path: "/secrets",
-    element: <Secrets />,
   },
 ]);
 
