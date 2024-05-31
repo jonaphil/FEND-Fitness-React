@@ -19,12 +19,16 @@ module.exports = {
     "shadow-m-strong",
     "shadow-l",
     "border-dlight",
-    
+
     //Progress Circles
     "w-15.5",
     "w-58.5",
     "h-15.5",
     "h-58.5",
+    "bg-cardio",
+    "bg-coordination",
+    "bg-mobility",
+    "bg-weightTraining",
   ],
   theme: {
     extend: {
@@ -32,11 +36,17 @@ module.exports = {
         ddark: "#202430",
         dmedium: "#3A4151",
         dlight: "#FBFBFB",
+        cardio: "#00aa00",
+        coordination: "#4400dd",
+        mobility: "#ffbb00",
+        weightTraining: "#bb2211",
       },
       fontFamily: {
         app: "Poppins, sans-serif",
       },
-      fontSize: {},
+      fontSize: {
+        "2xs": "0.75rem",
+      },
       fontWeight: {
         bold: 700,
         regular: 400,
