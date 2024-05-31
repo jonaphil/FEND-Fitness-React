@@ -1,7 +1,65 @@
 import { gql, useMutation } from "@apollo/client";
-import { getExerciseList } from "../queries/exerciseList";
+import { useState } from "react";
+import { LoadingButton } from "../components/StatusElements/Loading";
 
-export function CreateRandomExercisesButton() {
+function getRandom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function randomInt(lowerLimit = 0, upperLimit = 10, step = 1) {
+  const solution =
+    Math.floor((Math.random() * (upperLimit - lowerLimit)) / step) * step +
+    lowerLimit;
+  return solution;
+}
+
+const shuffle = (unshuffledArray) => {
+  const [array, setArray] = useState(unshuffledArray);
+  const { length } = array;
+  console.log(array);
+  const newArray = array.reduce(
+    (modifiedArray, currentValue, currentIndex) => {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      const tempValue = modifiedArray[randomIndex];
+      modifiedArray[randomIndex] = currentValue;
+      modifiedArray[currentIndex] = tempValue;
+      return modifiedArray;
+    },
+    [...array]
+  );
+  // for (let i = length; i > 0; i -= 1) {
+  //   const randomIndex = Math.floor(Math.random() * i);
+  //   newArray.push(array[randomIndex]);
+  //   newArray.splice(randomIndex, 1);
+  // }
+  console.log(newArray);
+  setArray(newArray);
+  return [...array];
+};
+
+function getShuffledArray(unshuffledArray) {
+  const array = [...unshuffledArray];
+  let currentIndex = array.length - 1;
+  console.log(unshuffledArray);
+  console.log(array);
+  while (currentIndex !== 0) {
+    const randomIndex = Math.floor(Math.random() * currentIndex);
+    if (currentIndex !== randomIndex) {
+      // const tempValue = array[currentIndex];
+      // array[currentIndex] = array[randomIndex];
+      // array[randomIndex] = tempValue;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    currentIndex -= 1;
+  }
+  console.log(array);
+  return array;
+}
+
+export function CreateRandomExerciseButton() {
   function generateRandomExerciseMutation() {
     const names = [
       "Exercise Lorem",
@@ -39,6 +97,21 @@ export function CreateRandomExercisesButton() {
       "Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",
       "Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim.",
       "Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+      "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.",
+      "Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.",
+      "Nicht einmal von der allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben. Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum, hinaus zu gehen in die weite Grammatik.",
+      "Der große Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilden Fragezeichen und hinterhältigen Semikoli, doch das Blindtextchen ließ sich nicht beirren. Es packte seine sieben Versalien, schob sich sein Initial in den Gürtel und machte sich auf den Weg.",
+      "Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse.",
+      "Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy.",
+      "Doch alles Gutzureden konnte es nicht überzeugen und so dauerte es nicht lange, bis ihm ein paar heimtückische Werbetexter auflauerten, es mit Longe und Parole betrunken machten und es dann in ihre Agentur schleppten, wo sie es für ihre Projekte wieder und wieder mißbrauchten.",
+      "Und wenn es nicht umgeschrieben wurde, dann benutzen Sie es immernoch. Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.",
+      "Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.",
+      "Nicht einmal von der allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben. Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum, hinaus zu gehen in die weite Grammatik.",
+      "Der große Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilden Fragezeichen und hinterhältigen Semikoli, doch das Blindtextchen ließ sich nicht beirren. Es packte seine sieben Versalien, schob sich sein Initial in den Gürtel und machte sich auf den Weg.",
+      "Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort.",
+      "Doch alles Gutzureden konnte es nicht überzeugen und so dauerte es nicht lange, bis ihm ein paar heimtückische Werbetexter auflauerten, es mit Longe und Parole betrunken machten und es dann in ihre Agentur schleppten, wo sie es für ihre Projekte wieder und wieder mißbrauchten. Und wenn es nicht umgeschrieben wurde, dann benutzen Sie es immernoch.",
+      "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.",
+      "Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen. Nicht einmal von der allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben. Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum, hinaus zu gehen in die weite Grammatik. Der große Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilden Fragezeichen und hinterhältigen Semikoli, doch das Blindtextchen ließ sich nicht beirren. Es packte seine sieben Versalien, schob sich sein Initial in den Gürtel und machte.",
     ];
     const types = ["duration", "reps"];
 
@@ -65,7 +138,7 @@ export function CreateRandomExercisesButton() {
   );
 
   if (loading) return "Loading...";
-  if (error) return `Error: ${error.message}`;
+  if (error) console.log(`Error: ${error.message}`);
   if (data) console.log(data);
   return (
     <button onClick={addExercise} className="rounded-md bg-dmedium p-4">
@@ -74,9 +147,7 @@ export function CreateRandomExercisesButton() {
   );
 }
 
-export function CreateRandomWorkoutsButton({ exerciseList }) {
-  const originalExerciseList = exerciseList;
-
+export function CreateRandomWorkoutButton({ exerciseList }) {
   function generateRandomWorkoutMutation() {
     const categoryList = [
       "cardio",
@@ -122,11 +193,12 @@ export function CreateRandomWorkoutsButton({ exerciseList }) {
       ["duration", "ExerciseWithDuration"],
     ];
 
-    const generateWorkoutExercisesList = (exerciseList) => {
-      const possibleExercises = exerciseList;
+    function generateWorkoutExercisesList() {
+      const possibleExercises = getShuffledArray(exerciseList);
+
       let workoutExercisesString = `[`;
 
-      for (let i = 0; i < amountExercises; i++) {
+      for (let i = 0; i < amountExercises; i += 1) {
         const exerciseType = getRandom(exerciseTypeList);
         const exercise = possibleExercises.shift();
         const simpleExerciseString = `
@@ -140,44 +212,7 @@ export function CreateRandomWorkoutsButton({ exerciseList }) {
       }
       workoutExercisesString += "]";
       return workoutExercisesString;
-    };
-
-    /*Way of Adding a Workout!
-
-    mutation AddWorkout {
-  createWorkout(
-    data: {
-      name: "Just A simple Workout", 
-      category: cardio, 
-      duration: 35, 
-      exercises: { create:
-        [
-        	{ExerciseWithReps: {reps: 5, exercise: { connect: {id: "cl2hkp3g6zjfb0atbsfchrvsv"} } } }, 
-          {ExerciseWithDuration: {duration: 30, exercise: { connect: {id: "clwgxezzh5hgy08w5k2jqurcf"} } } }
-        ]
-      }
     }
-) {
-    id
-    name
-    exercises {
-      ... on ExerciseWithReps {
-        exercise {
-          name
-        }
-        reps
-      }
-      ... on ExerciseWithDuration {
-        exercise {
-          name
-        }
-        duration
-      }
-    }
-  }
-}
-
-    */
     const ADD_WORKOUT = gql`
     mutation AddWorkout {
       createWorkout(
@@ -186,7 +221,7 @@ export function CreateRandomWorkoutsButton({ exerciseList }) {
           category: ${getRandom(categoryList)}, 
           duration: ${duration}, 
           exercises: { create:
-            ${generateWorkoutExercisesList(exerciseList)}
+            ${generateWorkoutExercisesList()}
           }
         }
     ) {
@@ -209,7 +244,6 @@ export function CreateRandomWorkoutsButton({ exerciseList }) {
       }
     }
     `;
-    console.log(ADD_WORKOUT);
     return ADD_WORKOUT;
   }
 
@@ -227,26 +261,124 @@ export function CreateRandomWorkoutsButton({ exerciseList }) {
   );
 }
 
-function getRandom(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
+export function CreateRandomProgramButton({ workoutList, assetList }) {
+  function generateRandomProgramMutation() {
+    function generateWorkouts() {
+      console.log(workoutList);
+      const possibleWorkouts = getShuffledArray(workoutList);
+      console.log(possibleWorkouts);
+      const focusCounter = {
+        cardio: 0,
+        coordination: 0,
+        mobility: 0,
+        weightTraining: 0,
+      };
+      const workoutListLength = randomInt(4, 28);
+      let workoutListString = "[";
+      for (let day = 1; day <= workoutListLength; day += 1) {
+        const workout = possibleWorkouts.shift();
+        const singleWorkoutString = `{
+          day: ${day},
+          workout: {
+            connect: {id:"${workout.id}"}
+          }
+        },`;
+        workoutListString += singleWorkoutString;
+        focusCounter[workout.category] += 1;
+      }
+      workoutListString += "]";
+      const focus = Object.keys(focusCounter).reduce((x, y) =>
+        focusCounter[x] > focusCounter[y] ? x : y
+      );
+      return [workoutListString, focus];
+    }
 
-function randomInt(lowerLimit = 0, upperLimit = 10, step = 1) {
-  const solution =
-    Math.floor((Math.random() * (upperLimit - lowerLimit)) / step) * step +
-    lowerLimit;
-  return solution;
-}
+    const descriptionList = [
+      "Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte!",
+      "Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern? Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen?",
+      "Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag.",
+      "Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen war. Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen.",
+      "Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War jetzt wirklich alles vorbei, waren alle Mühe und alle Vorbereitungen umsonst?",
+      "Er presste sich ganz eng an die Wand hinter ihm und hoffte, der Verfolger würde ihn übersehen, als plötzlich neben ihm mit kaum wahrnehmbarem Quietschen eine Tür im nächtlichen Wind hin und her schwang. Könnte dieses der flehentlich herbeigesehnte Ausweg aus seinem Dilemma sein?",
+      "Langsam bewegte er sich auf die offene Tür zu, immer dicht an die Mauer gepresst. Würde diese Tür seine Rettung werden? Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel?",
+      "Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn beobachtet und abgewartet, um ihn nun um die Früchte seiner Arbeit zu erleichtern?",
+      "Oder gehörten die Schritte hinter ihm zu einem der unzähligen Gesetzeshüter dieser Stadt, und die stählerne Acht um seine Handgelenke würde gleich zuschnappen? Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang.",
+      "Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag. Er versuchte, sich in der Dunkelheit seinen Weg zu ertasten und erstarrte: Anscheinend gab es keinen anderen Ausweg aus diesem kleinen Hof als den Durchgang, durch den er gekommen war.",
+      "Die Schritte wurden lauter und lauter, er sah eine dunkle Gestalt um die Ecke biegen. Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen Ausweg. War jetzt wirklich alles vorbei, waren alle Mühe und alle Vorbereitungen umsonst?",
+      "Er presste sich ganz eng an die Wand hinter ihm und hoffte, der Verfolger würde ihn übersehen, als plötzlich neben ihm mit kaum wahrnehmbarem Quietschen eine Tür im nächtlichen Wind hin und her schwang.Könnte dieses der flehentlich herbeigesehnte Ausweg aus seinem Dilemma sein ? Langsam bewegte er sich auf die offene Tür zu, immer dicht an die Mauer gepresst.Würde diese Tür seine Rettung werden ? Er hörte leise Schritte hinter sich. ",
+      "Das bedeutete nichts Gutes.Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel ? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn ... ",
+    ];
+    const duration = randomInt(4, 15);
+    const difficultyList = ["easy", "hard", "moderate"];
+    const nameList = [
+      "Toya",
+      "Sebastian",
+      "Eugina",
+      "Djamila",
+      "Ernest",
+      "Adib",
+      "Carla",
+      "Davida",
+      "Celina",
+      "Zandra",
+      "Joe",
+      "Cleva",
+      "Maurice",
+      "Yaroslava",
+      "Michael",
+      "Cristina",
+      "Sophus",
+      "Shawna",
+      "Davina",
+      "Theodora",
+      "Christel",
+      "Donald",
+      "Brendan",
+      "Anuj",
+    ];
 
-function getShuffledArray(unshuffledArray) {
-  const array = unshuffledArray;
-  const shuffledArray = [];
-  let currentIndex = 0;
-
-  while (currentIndex < array.length) {
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    shuffledArray.splice(randomIndex, 0, array[currentIndex]);
-    currentIndex++;
+    const [workoutsString, focus] = generateWorkouts();
+    const ADD_PROGRAM = `
+    mutation AddProgram {
+      createProgram(
+        data: {
+          name: "Exercise ${getRandom(nameList)}",
+          image: { connect:
+            {id: "${getRandom(assetList).id}"}
+          },
+          duration: ${duration},
+          difficulty: ${getRandom(difficultyList)},
+          description: "${getRandom(descriptionList)}",
+          workoutsWithDay: { create: ${workoutsString}}
+          focus: ${focus}
+        }
+      ){
+        name
+        image {
+          id
+          name
+          url
+        }
+        duration
+        difficulty
+        description
+        workoutsWithDay
+        focus
+      }
+    }`;
+    return ADD_PROGRAM;
   }
-  return shuffledArray;
+
+  const [addProgram, { data, loading, error }] = useMutation(
+    generateRandomProgramMutation()
+  );
+
+  if (loading) return <LoadingButton />;
+  if (error) return `Error: &{error.message}`;
+  if (data) console.log(data);
+  return (
+    <button onClick={addProgram} className="rounded-md bg-dmedium p-4">
+      Add random Program
+    </button>
+  );
 }

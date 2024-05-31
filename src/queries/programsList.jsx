@@ -1,9 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
-import Card from "../components/Card";
 
 //FIXME function has to be async??
 export function getProgramsList() {
-  
   const GET_PROGRAMS = gql`
     query GetPrograms {
       programs {

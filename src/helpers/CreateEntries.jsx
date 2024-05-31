@@ -1,17 +1,31 @@
 import MainScreen from "../components/MainScreen";
 import {
-  CreateRandomExercisesButton,
-  CreateRandomWorkoutsButton,
+  CreateRandomExerciseButton,
+  CreateRandomWorkoutButton,
+  CreateRandomProgramButton,
 } from "./createRandomEntries";
-import { getExerciseList } from "../queries/exerciseList";
+import getEntryList from "../queries/entriesList";
+import { LoadingButton } from "../components/StatusElements/Loading";
 
 export default function CreateEntries() {
-  const exerciseList = getExerciseList();
+  const entriesFetch = getEntryList();
   return (
     <MainScreen>
-      <CreateRandomExercisesButton />
-      {exerciseList && (
-        <CreateRandomWorkoutsButton exerciseList={exerciseList} />
+      <CreateRandomExerciseButton />
+      {entriesFetch.loading ? (
+        <LoadingButton />
+      ) : entriesFetch.error ? (
+        <div className="bg-red700 rounded-md pt-4">ERROR</div>
+      ) : (
+        <>
+          <CreateRandomWorkoutButton
+            exerciseList={entriesFetch.data.exercises}
+          />
+          {/* <CreateRandomProgramButton
+            workoutList={entriesFetch.data.workouts}
+            assetList={entriesFetch.data.assets}
+          /> */}
+        </>
       )}
     </MainScreen>
   );
