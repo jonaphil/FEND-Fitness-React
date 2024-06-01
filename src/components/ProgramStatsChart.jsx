@@ -1,6 +1,6 @@
-import { colors } from "../styles/variables.jsx";
 import { Chart as ChartJS, ArcElement } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { colors } from "../styles/variables";
 
 ChartJS.register(ArcElement);
 
@@ -26,5 +26,9 @@ export default function ProgramStatsChart({ stats }) {
     ],
   };
 
-  return <Pie data={data} />;
+  return (
+    <div className="h-fit-content w-2/5">
+      <Pie data={data} />
+    </div>
+  );
 }
