@@ -10,40 +10,14 @@ function randomInt(lowerLimit = 0, upperLimit = 10, step = 1) {
   const solution =
     Math.floor((Math.random() * (upperLimit - lowerLimit)) / step) * step +
     lowerLimit;
-  return solution;
+  return Math.round(solution); // It is rounded again, because I got problems of having floats in the graphql mutation string.
 }
 
-const shuffle = (unshuffledArray) => {
-  const [array, setArray] = useState(unshuffledArray);
-  const { length } = array;
-  console.log(array);
-  const newArray = array.reduce(
-    (modifiedArray, currentValue, currentIndex) => {
-      const randomIndex = Math.floor(Math.random() * currentIndex);
-      const tempValue = modifiedArray[randomIndex];
-      modifiedArray[randomIndex] = currentValue;
-      modifiedArray[currentIndex] = tempValue;
-      return modifiedArray;
-    },
-    [...array]
-  );
-  // for (let i = length; i > 0; i -= 1) {
-  //   const randomIndex = Math.floor(Math.random() * i);
-  //   newArray.push(array[randomIndex]);
-  //   newArray.splice(randomIndex, 1);
-  // }
-  console.log(newArray);
-  setArray(newArray);
-  return [...array];
-};
-
-function getShuffledArray(unshuffledArray) {
-  const array = [...unshuffledArray];
-  let currentIndex = array.length - 1;
-  console.log(unshuffledArray);
-  console.log(array);
-  while (currentIndex !== 0) {
-    const randomIndex = Math.floor(Math.random() * currentIndex);
+function shuffleArray(array) {
+  let currentIndex = array.length;
+  while (currentIndex > 0) {
+    currentIndex -= 1;
+    const randomIndex = Math.floor(Math.random() * currentIndex + 1);
     if (currentIndex !== randomIndex) {
       // const tempValue = array[currentIndex];
       // array[currentIndex] = array[randomIndex];
@@ -53,10 +27,13 @@ function getShuffledArray(unshuffledArray) {
         array[currentIndex],
       ];
     }
-    currentIndex -= 1;
   }
-  console.log(array);
-  return array;
+}
+
+function generateRandomList(length) {
+  const list = Array.from(Array(length), (x, i) => i);
+  shuffleArray(list);
+  return list;
 }
 
 export function CreateRandomExerciseButton() {
@@ -182,25 +159,23 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
       "Workout ab",
       "Workout itaque",
     ];
-    const exerciseList = getShuffledArray(originalExerciseList);
+    const possibleIndices = generateRandomList(exerciseList.length); // Why is the simple Copy not working? There is some odd bug!
     const amountExercises = randomInt(
       10,
       exerciseList.length < 20 ? exerciseList.length : 20
-    ); //between 10 and 20 exercises
-    const duration = randomInt(amountExercises * 1.2, amountExercises * 1.7); //between 1.2 and 1.7 minutes per exercise
+    ); // between 10 and 20 exercises
+    const duration = randomInt(amountExercises * 1.2, amountExercises * 1.7); // between 1.2 and 1.7 minutes per exercise
     const exerciseTypeList = [
       ["reps", "ExerciseWithReps"],
       ["duration", "ExerciseWithDuration"],
     ];
 
     function generateWorkoutExercisesList() {
-      const possibleExercises = getShuffledArray(exerciseList);
-
       let workoutExercisesString = `[`;
 
       for (let i = 0; i < amountExercises; i += 1) {
         const exerciseType = getRandom(exerciseTypeList);
-        const exercise = possibleExercises.shift();
+        const exercise = exerciseList[possibleIndices[i]];
         const simpleExerciseString = `
         {${exerciseType[1]}: 
           {${exerciseType[0]}: ${
@@ -252,7 +227,7 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
   );
 
   if (loading) return "Loading...";
-  if (error) return `Error: ${error.message}`;
+  if (error) console.log(`Error: ${error.message}`);
   if (data) console.log(data);
   return (
     <button onClick={addWorkout} className="rounded-md bg-dmedium p-4">
@@ -264,19 +239,25 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
 export function CreateRandomProgramButton({ workoutList, assetList }) {
   function generateRandomProgramMutation() {
     function generateWorkouts() {
-      console.log(workoutList);
-      const possibleWorkouts = getShuffledArray(workoutList);
-      console.log(possibleWorkouts);
+      // console.log(workoutList);
+      // const possibleWorkouts = workoutList.slice();
+      // shuffleArray(possibleWorkouts);
+      // console.log(possibleWorkouts);
+      const randomIndex = generateRandomList(workoutList.length);
+      console.log(randomIndex);
       const focusCounter = {
         cardio: 0,
         coordination: 0,
         mobility: 0,
         weightTraining: 0,
       };
-      const workoutListLength = randomInt(4, 28);
+      const workoutListLength = randomInt(
+        7,
+        workoutList.length < 28 ? workoutList.length : 28
+      );
       let workoutListString = "[";
       for (let day = 1; day <= workoutListLength; day += 1) {
-        const workout = possibleWorkouts.shift();
+        const workout = workoutList[randomIndex[day - 1]];
         const singleWorkoutString = `{
           day: ${day},
           workout: {
@@ -338,7 +319,7 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
     ];
 
     const [workoutsString, focus] = generateWorkouts();
-    const ADD_PROGRAM = `
+    const ADD_PROGRAM = gql`
     mutation AddProgram {
       createProgram(
         data: {
@@ -349,23 +330,25 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
           duration: ${duration},
           difficulty: ${getRandom(difficultyList)},
           description: "${getRandom(descriptionList)}",
-          workoutsWithDay: { create: ${workoutsString}}
+          workoutsWithDay: { create: ${workoutsString}},
           focus: ${focus}
         }
       ){
         name
         image {
           id
-          name
           url
         }
         duration
         difficulty
         description
-        workoutsWithDay
+        workoutsWithDay{
+          id
+        }
         focus
       }
     }`;
+    console.log(ADD_PROGRAM);
     return ADD_PROGRAM;
   }
 
@@ -374,7 +357,7 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
   );
 
   if (loading) return <LoadingButton />;
-  if (error) return `Error: &{error.message}`;
+  if (error) console.log(`Error: ${error.message}`);
   if (data) console.log(data);
   return (
     <button onClick={addProgram} className="rounded-md bg-dmedium p-4">
@@ -382,3 +365,5 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
     </button>
   );
 }
+
+// TODO Implement automatic publishing after adding the entry.

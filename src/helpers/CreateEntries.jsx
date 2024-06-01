@@ -9,6 +9,7 @@ import { LoadingButton } from "../components/StatusElements/Loading";
 
 export default function CreateEntries() {
   const entriesFetch = getEntryList();
+
   return (
     <MainScreen>
       <CreateRandomExerciseButton />
@@ -21,10 +22,10 @@ export default function CreateEntries() {
           <CreateRandomWorkoutButton
             exerciseList={entriesFetch.data.exercises}
           />
-          {/* <CreateRandomProgramButton
+          <CreateRandomProgramButton
             workoutList={entriesFetch.data.workouts}
             assetList={entriesFetch.data.assets}
-          /> */}
+          />
         </>
       )}
     </MainScreen>
