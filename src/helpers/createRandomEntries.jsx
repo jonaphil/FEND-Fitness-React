@@ -1,12 +1,15 @@
 import { gql, useMutation } from "@apollo/client";
-import { useState } from "react";
-import { LoadingButton } from "../components/StatusElements/Loading";
+
+// usually This gets imported, but for ease of use I put it here.
+function LoadingButton() {
+  return <div className="rounded-md bg-green-600 p-4">Loading...</div>;
+}
 
 function getRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function randomInt(lowerLimit = 0, upperLimit = 10, step = 1) {
+function randomInt(upperLimit = 10, lowerLimit = 0, step = 1) {
   const solution =
     Math.floor((Math.random() * (upperLimit - lowerLimit)) / step) * step +
     lowerLimit;
@@ -19,9 +22,6 @@ function shuffleArray(array) {
     currentIndex -= 1;
     const randomIndex = Math.floor(Math.random() * currentIndex + 1);
     if (currentIndex !== randomIndex) {
-      // const tempValue = array[currentIndex];
-      // array[currentIndex] = array[randomIndex];
-      // array[randomIndex] = tempValue;
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
@@ -133,36 +133,88 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
       "weightTraining",
     ];
     const nameList = [
-      "Workout Lorem",
-      "Workout ipsum",
-      "Workout dolor",
-      "Workout sit",
-      "Workout amet",
-      "Workout consectetur",
-      "Workout adipisicing",
-      "Workout elit",
-      "Workout Eos",
-      "Workout sequi",
-      "Workout dignissimos",
-      "Workout consequuntur",
-      "Workout autem",
-      "Workout repudiandae",
-      "Workout delectus",
-      "Workout cupiditate",
-      "Workout rem",
-      "Workout minima",
-      "Workout perspiciatis",
-      "Workout iste",
-      "Workout odio",
-      "Workout ipsam",
-      "Workout alias",
-      "Workout ab",
-      "Workout itaque",
+      "Lorem",
+      "ipsum",
+      "dolor",
+      "sit",
+      "amet",
+      "consectetur",
+      "adipisicing",
+      "elit",
+      "Eos",
+      "sequi",
+      "dignissimos",
+      "consequuntur",
+      "autem",
+      "repudiandae",
+      "delectus",
+      "cupiditate",
+      "rem",
+      "minima",
+      "perspiciatis",
+      "iste",
+      "odio",
+      "ipsam",
+      "alias",
+      "ab",
+      "itaque",
+      "Ankereffekt",
+      "Attributionsfehler",
+      "Auswirkungsverzerrung",
+      "Backfire-Effekt",
+      "Barnum-Effekt",
+      "Beharren auf Überzeugungen",
+      "Überzeugungsbias",
+      "Besitztumseffekt",
+      "Bestätigungsfehler",
+      "Verzerrungsblindheit",
+      "Clustering-Illusion",
+      "Cross-Race-Effect",
+      "Decoy-Effekt",
+      "Default-Effekt",
+      "Déformation professionnelle",
+      "Dichotomie",
+      "Dunning-Kruger-Effekt",
+      "Emotionale Beweisführung",
+      "Eskalierendes Commitment",
+      "Frequenzillusion",
+      "Gender Bias",
+      "Halo-Effekt",
+      "Hot-Hand-Phänomen",
+      "IKEA-Effekt",
+      "Illusorische Korrelation",
+      "Katastrophisieren",
+      "Kontrasteffekt",
+      "Kontrollillusion",
+      "Labeling",
+      "Law of the Instrument",
+      "Missachtung des Maßstabs",
+      "Mitläufereffekt",
+      "Moralische Lizenzierung",
+      "Nachträgliche Begründungstendenz",
+      "Projektionsfehler",
+      "Erinnerungsverzerrung",
+      "Rhyme-as-reason-Effekt",
+      "Rückschaufehler",
+      "Selbstüberschätzung",
+      "Selbstwertdienliche Verzerrung und Lake-Wobegon-Effekt",
+      "Self-Reference-Effekt",
+      "Spielerfehlschluss",
+      "Status-quo-Verzerrung",
+      "Truthahn-Illusion",
+      "Überlebenden-Verzerrung",
+      "Unterlassungseffekt",
+      "Verfügbarkeitsheuristik, auch Verfügbarkeitsverzerrung",
+      "Verlustaversion",
+      "Vermenschlichung - Anthropomorphisierung - oder Personifikation",
+      "Wahrheitseffekt",
+      "Wahrscheinlichkeitsvernachlässigung",
+      "Zwei-Faktoren-Theorie der Emotion",
     ];
     const possibleIndices = generateRandomList(exerciseList.length); // Why is the simple Copy not working? There is some odd bug!
     const amountExercises = randomInt(
-      10,
-      exerciseList.length < 20 ? exerciseList.length : 20
+      exerciseList.length < 20 ? exerciseList.length : 20,
+      10
     ); // between 10 and 20 exercises
     const duration = randomInt(amountExercises * 1.2, amountExercises * 1.7); // between 1.2 and 1.7 minutes per exercise
     const exerciseTypeList = [
@@ -179,7 +231,7 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
         const simpleExerciseString = `
         {${exerciseType[1]}: 
           {${exerciseType[0]}: ${
-          exerciseType[0] === "reps" ? randomInt(7, 15) : randomInt(30, 90, 10)
+          exerciseType[0] === "reps" ? randomInt(15, 7) : randomInt(90, 30, 10)
         }, exercise: {
             connect: {
               id: "${exercise.id}"} } } },`;
@@ -192,7 +244,7 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
     mutation AddWorkout {
       createWorkout(
         data: {
-          name: "${getRandom(nameList)}", 
+          name: "Workout ${getRandom(nameList)}", 
           category: ${getRandom(categoryList)}, 
           duration: ${duration}, 
           exercises: { create:
@@ -239,12 +291,7 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
 export function CreateRandomProgramButton({ workoutList, assetList }) {
   function generateRandomProgramMutation() {
     function generateWorkouts() {
-      // console.log(workoutList);
-      // const possibleWorkouts = workoutList.slice();
-      // shuffleArray(possibleWorkouts);
-      // console.log(possibleWorkouts);
       const randomIndex = generateRandomList(workoutList.length);
-      console.log(randomIndex);
       const focusCounter = {
         cardio: 0,
         coordination: 0,
@@ -252,8 +299,8 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
         weightTraining: 0,
       };
       const workoutListLength = randomInt(
-        7,
-        workoutList.length < 28 ? workoutList.length : 28
+        workoutList.length < 28 ? workoutList.length : 28,
+        7
       );
       let workoutListString = "[";
       for (let day = 1; day <= workoutListLength; day += 1) {
@@ -289,7 +336,7 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
       "Er presste sich ganz eng an die Wand hinter ihm und hoffte, der Verfolger würde ihn übersehen, als plötzlich neben ihm mit kaum wahrnehmbarem Quietschen eine Tür im nächtlichen Wind hin und her schwang.Könnte dieses der flehentlich herbeigesehnte Ausweg aus seinem Dilemma sein ? Langsam bewegte er sich auf die offene Tür zu, immer dicht an die Mauer gepresst.Würde diese Tür seine Rettung werden ? Er hörte leise Schritte hinter sich. ",
       "Das bedeutete nichts Gutes.Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel ? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte! Hatte einer seiner zahllosen Kollegen dieselbe Idee gehabt, ihn ... ",
     ];
-    const duration = randomInt(4, 15);
+    const duration = randomInt(15, 4);
     const difficultyList = ["easy", "hard", "moderate"];
     const nameList = [
       "Toya",
@@ -323,7 +370,7 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
     mutation AddProgram {
       createProgram(
         data: {
-          name: "Exercise ${getRandom(nameList)}",
+          name: "Program ${getRandom(nameList)}",
           image: { connect:
             {id: "${getRandom(assetList).id}"}
           },
@@ -348,7 +395,6 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
         focus
       }
     }`;
-    console.log(ADD_PROGRAM);
     return ADD_PROGRAM;
   }
 
