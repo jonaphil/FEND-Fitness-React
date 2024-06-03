@@ -31,7 +31,6 @@ export default function SvgProgressCircle({
   const lines = {
     outerArc: `M ${center.x} ${
       center.y - outerRadius
-
     } A ${outerRadius} ${outerRadius} 0 ${cleanPercentage > 50 ? 1 : 0} 1 ${
       Math.sin(rad) * outerRadius + center.x
     } ${-Math.cos(rad) * outerRadius + center.y}`,
