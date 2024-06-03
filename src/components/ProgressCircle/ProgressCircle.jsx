@@ -7,11 +7,10 @@ export default function ProgressCircle({
   givenSize = "small", //small, large
   children,
 }) {
-  //TODO Question: How to dynamic assign values to const-variables.
-  //Like const a = b == 0 ? 1 : 2; But as a switch case?
+  // TODO Question: How to dynamic assign values to const-variables.
+  // Like const a = b == 0 ? 1 : 2; But as a switch case?
+  // => one possible Answer: Do it with an object: {case1 : {}, case2: {}, case3:{}} and then get the values by case = "case1|case2|case3", obj[case] gets the specific object.
   const svgCircleProps = {
-    innerRadius: undefined,
-    outerRadius: undefined,
     filledColor: colors.dlight,
     emptyColor: colors.dmedium,
     borderColor: colors.ddark,
@@ -28,6 +27,9 @@ export default function ProgressCircle({
           break;
         case "light":
           svgCircleProps.emptyColor = "rgba(0,0,0,0.1)";
+          break;
+        default:
+          break;
       }
       svgCircleProps.strokeWidth = 1;
       break;
@@ -38,18 +40,16 @@ export default function ProgressCircle({
       svgCircleProps.strokeWidth = 0;
       svgCircleProps.borderColor = "none";
       break;
-
+    default:
+      break;
   }
-
-  console.log(svgCircleProps);
 
   return (
     <div className={`relative h-full w-full`}>
-      {" "}
-      {/*FIXME */}
+      {/* FIXME */}
       <div
         className={`relative h-full w-full ${
-          givenSize == "large" ? "rounded-full shadow-m-strong" : ""
+          givenSize === "large" ? "rounded-full shadow-m-strong" : ""
         }`}
       >
         <SvgProgressCircle
