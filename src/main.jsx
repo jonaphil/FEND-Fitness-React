@@ -13,6 +13,7 @@ import {
 import Dashboard from "./pages/Dashboard";
 import ExcerciseList from "./pages/ExcerciseList";
 import Profile from "./pages/Profile";
+import HelloWorld from "./pages/HelloWorld";
 
 // React general
 const container = document.getElementById("root");
@@ -23,16 +24,19 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard name={"Name"} currentExcercise={"Exc3"} />,
-    
   },
   {
     path: "/excercise-list",
-    element: <ExcerciseList/>,
+    element: <ExcerciseList />,
   },
   {
     path: "/profile",
-    element: <Profile/>,
-  }
+    element: <Profile />,
+  },
+  {
+    path: "/hello-world",
+    element: <HelloWorld percentage={40} />,
+  },
 ]);
 
 //Apollo TODO

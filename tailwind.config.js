@@ -1,6 +1,8 @@
 module.exports = {
   content: ["./src/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   safelist: [
+    // This is needed for classes which are dynamically named and applied so tailwind doesn't know beforehand they are used.
+    // This is for the Card Component This is a test.
     "bg-gradient-red",
     "bg-gradient-green",
     "bg-gradient-blue",
@@ -16,6 +18,13 @@ module.exports = {
     "shadow-m",
     "shadow-m-strong",
     "shadow-l",
+    "border-dlight",
+    
+    //Progress Circles
+    "w-15.5",
+    "w-58.5",
+    "h-15.5",
+    "h-58.5",
   ],
   theme: {
     extend: {
@@ -36,11 +45,13 @@ module.exports = {
         4.5: "1.125rem",
         12.5: "3.125rem",
         13: "3.25rem",
+        15.5: "3.875rem",
         17.5: "4.375rem",
         18: "4.5rem",
         25: "6.25rem",
         30: "7.5rem",
         53.75: "13.4375rem",
+        58.5: "14.625rem",
         93.75: "23.4375rem",
       },
       borderRadius: {
@@ -56,6 +67,7 @@ module.exports = {
         m: "0px 3px 10px rgba(0, 0, 0, 0.25)",
         "m-strong": "0px 3px 10px rgba(0, 0, 0, 0.35)",
         l: "2px 5px 10px rgba(0, 0, 0, 0.25)",
+        inside: "0px 0px 2px 5px #000000 inset",
       },
     },
   },
