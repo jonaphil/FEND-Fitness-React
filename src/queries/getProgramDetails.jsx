@@ -8,6 +8,7 @@ export default function getProgramDetails(programId) {
         image {
           url
         }
+        id
         name
         description
         focus
