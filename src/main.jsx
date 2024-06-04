@@ -1,13 +1,17 @@
 import React from "react";
+import {useState} from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Dashboard from "./pages/Dashboard";
 import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
-import { ProgramDetailsPage } from "./pages/ProgramDetails";
+import { ProgramDetails } from "./pages/ProgramDetails";
+import Program from "./pages/Program";
+import { ProgramStart } from "./pages/ProgramStart";
+import { UserContext } from "./Context";
+import "./index.css";
 
 // React general
 const container = document.getElementById("root");
@@ -32,8 +36,21 @@ const router = createBrowserRouter([
     element: <HelloWorld percentage={40} />,
   },
   {
-    path: "/program/:programId",
-    element: <ProgramDetailsPage />,
+    path: "/program/:programId/",
+    element: <Program />,
+    children: [
+      {
+        path: "details/",
+        element: <ProgramDetails />,
+      },
+      {
+        path: "start/",
+        element: <ProgramStart />,
+      },
+    ],
+  },
+  {
+    path: "/program/:programId/start",
   },
 ]);
 
@@ -44,9 +61,35 @@ const clientApollo = new ApolloClient({
 });
 
 root.render(
+  <Main />
+);
+
+function Main(){
+   
+  // User
+  const [userData, setUserData] = useState({
+  name: "Name",
+  current: {
+    day: 1,
+    programId: "",
+    programName: "Titel des Programs",
+    exercise: {
+      duration: 26,
+      focus: "Beweglichkeit",
+    },
+  },
+  lastTimeTrained: 0,
+});
+
+
+  return (
   <React.StrictMode>
     <ApolloProvider client={clientApollo}>
-      <RouterProvider router={router} />
+      <UserContext.Provider value={[userData, setUserData]}>
+        <RouterProvider router={router} />
+      </UserContext.Provider>
     </ApolloProvider>
   </React.StrictMode>
-);
+)
+
+}
