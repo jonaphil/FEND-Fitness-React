@@ -1,18 +1,20 @@
 import React from "react";
-import {useState} from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import "./index.css";
+import { UserContext, apolloClient } from "./Context";
 import Dashboard from "./pages/Dashboard";
 import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
 import { ProgramDetails } from "./pages/ProgramDetails";
-import Program from "./pages/Program";
+import { ProgramComp } from "./pages/Program";
 import { ProgramStart } from "./pages/ProgramStart";
-import { UserContext } from "./Context";
-import "./index.css";
+import Workout from "./components/Workout";
+import Exercise from "./components/Exercise";
+import loadProgramsList from "./queries/programsList";
+import loadProgramDetails from "./queries/getProgramDetails";
 
 // React general
 const container = document.getElementById("root");
@@ -27,6 +29,7 @@ const router = createBrowserRouter([
   {
     path: "/programs",
     element: <ProgramsList />,
+    loader: loadProgramsList,
   },
   {
     path: "/profile",
@@ -42,7 +45,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/program/:programId/",
-    element: <Program />,
+    element: <ProgramComp />,
+    loader: loadProgramDetails,
     children: [
       {
         path: "details/",
@@ -52,52 +56,61 @@ const router = createBrowserRouter([
         path: "start/",
         element: <ProgramStart />,
       },
+      {
+        path: "workout/:workoutId/",
+        element: <Workout />,
+        children: [
+          {
+            path: ":ExerciseIndex/",
+            element: <Exercise />,
+          },
+        ],
+      },
     ],
-  },
-  {
-    path: "/program/:programId/start",
   },
 ]);
 
-// Apollo
-const clientApollo = new ApolloClient({
-  uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cluu29pkz000008l91dji8p5l/master",
-  cache: new InMemoryCache(),
-});
-
-loadDevMessages();
-loadErrorMessages();
-
-root.render(
-  <Main />
-);
-
-function Main(){
-   
+function Main() {
   // User
-  const [userData, setUserData] = useState({
-  name: "Name",
-  current: {
-    day: 1,
-    programId: "",
-    programName: "Titel des Programs",
-    exercise: {
-      duration: 26,
-      focus: "Beweglichkeit",
+  //  const [userData, setUserData] = useState({
+  //   name: "Name",
+  //   current: {
+  //     day: 1,
+  //     programId: "",
+  //     programName: "Titel des Programs",
+  //     exercise: {
+  //       duration: 26,
+  //       focus: "Beweglichkeit",
+  //     },
+  //   },
+  //   lastTimeTrained: 0,
+  //   daysInARow: 0,
+  // });
+  const userData = {
+    name: "Name",
+    current: {
+      day: 1,
+      programId: "",
+      programName: "Titel des Programs",
+      exercise: {
+        id: "",
+        duration: 26,
+        focus: "Beweglichkeit",
+      },
     },
-  },
-  lastTimeTrained: 0,
-});
-
+    lastTimeTrained: 0,
+    daysInARow: 0,
+  };
 
   return (
-  <React.StrictMode>
-    <ApolloProvider client={clientApollo}>
-      <UserContext.Provider value={[userData, setUserData]}>
-        <RouterProvider router={router} />
-      </UserContext.Provider>
-    </ApolloProvider>
-  </React.StrictMode>
-)
-
+    <React.StrictMode>
+      <ApolloProvider client={apolloClient}>
+        <UserContext.Provider value={userData}>
+          <RouterProvider router={router} />
+        </UserContext.Provider>
+      </ApolloProvider>
+    </React.StrictMode>
+  );
 }
+
+root.render(<Main />);

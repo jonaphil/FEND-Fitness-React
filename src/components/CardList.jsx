@@ -15,15 +15,6 @@ export default function CardList({ listArray }) {
     }
   };
 
-  // FIXME: Use a real Loading-Logic!
-  if (listArray.length === 0) {
-    return (
-      <Card bgColor="dmedium" justify={"center"}>
-        <h3>Loading</h3>
-      </Card>
-    );
-  }
-
   return (
     <ul className="flex w-full flex-col items-center gap-5">
       {listArray.map((item, index) => {

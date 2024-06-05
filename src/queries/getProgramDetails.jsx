@@ -1,7 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
+import { apolloClient } from "../Context";
 
-export default function getProgramDetails(programId) {
+export default function loadProgramDetails({ params }) {
   //Apollo- Cache-keys.
+  const { programId } = params;
   const GET_PROGRAM_DETAILS = gql`
     query GetProgramDetails($programId: ID!) {
       programs(where: { id: $programId }) {
@@ -15,9 +17,9 @@ export default function getProgramDetails(programId) {
         difficulty
         duration
         workoutsWithDay {
-          id
           day
           workout {
+            id
             name
             category
             duration
@@ -27,7 +29,8 @@ export default function getProgramDetails(programId) {
     }
   `;
 
-  const result = useQuery(GET_PROGRAM_DETAILS, {
+  const result = apolloClient.query({
+    query: GET_PROGRAM_DETAILS,
     variables: { programId },
   });
 
