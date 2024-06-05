@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { UserContext } from "../Context";
 import MainScreen from "../components/MainScreen";
 import Card from "../components/Card";
+
 // import "../output.css";
 
 export default function Dashboard() {
-  const [user, setUser] = useContext(UserContext);
+  const user = useContext(UserContext);
   // TODO Rework dashboard, svg, Links, etc.
   return (
     <MainScreen page={"home"}>
