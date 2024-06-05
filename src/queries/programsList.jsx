@@ -1,9 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
-import Card from "../components/Card";
+import { apolloClient } from "../Context";
 
-//FIXME function has to be async??
-export function getProgramsList() {
-  
+// FIXME function has to be async??
+export default function loadProgramsList() {
   const GET_PROGRAMS = gql`
     query GetPrograms {
       programs {
@@ -14,13 +13,7 @@ export function getProgramsList() {
     }
   `;
 
-  const { loading, error, data } = useQuery(GET_PROGRAMS);
+  const response = apolloClient.query({ query: GET_PROGRAMS });
 
-  if (loading) return [];
-  if (error) {
-    console.log(error.message);
-    return [{ name: "Error" }];
-  }
-
-  return data.programs;
+  return response;
 }
