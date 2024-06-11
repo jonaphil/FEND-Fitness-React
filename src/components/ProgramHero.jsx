@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
 import InfoDot from "./InfoDot";
 import XClose from "../media/icons/X-close.svg?react";
+import germanTranslation from "../helpers/translations";
 
 export default function ProgramHero({ name, focus, difficulty, duration }) {
   const colorDifficulty = {
     easy: "dlight",
     moderate: "dmedium",
     hard: "ddark",
-  };
-  const german = {
-    easy: "Leicht",
-    moderate: "Mittel",
-    hard: "Schwierig",
-    cardio: "Ausdauer",
-    coordination: "Koordination",
-    weightTraining: "Krafttraining",
-    mobility: "Beweglichkeit",
   };
 
   return (
@@ -28,10 +20,10 @@ export default function ProgramHero({ name, focus, difficulty, duration }) {
         </div>
         <h1>{name}</h1>
         <div className="flex w-full flex-row justify-between px-4">
-          <InfoDot color={focus} text={german[focus]} />
+          <InfoDot color={focus} text={germanTranslation[focus]} />
           <InfoDot
             color={colorDifficulty[difficulty]}
-            text={german[difficulty]}
+            text={germanTranslation[difficulty]}
           />
           <InfoDot
             size={Math.floor(Math.sqrt(duration) * 2)}
