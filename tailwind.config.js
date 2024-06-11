@@ -53,6 +53,13 @@ module.exports = {
     "w-8",
     "w-9",
     "w-10",
+
+    // ExerciseList
+    "border-4",
+    "border-dmedium",
+
+    // Header
+    "absolute",
   ],
   theme: {
     extend: {
@@ -67,8 +74,10 @@ module.exports = {
       },
       fontFamily: {
         app: "Poppins, sans-serif",
+        special: "Montserrat, sans-serif",
       },
       fontSize: {
+        "6.5xl": "4rem",
         "2xs": "0.75rem",
         "3xs": "0.625rem",
       },
