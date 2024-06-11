@@ -15,6 +15,7 @@ import Workout from "./components/Workout";
 import Exercise from "./components/Exercise";
 import loadProgramsList from "./queries/programsList";
 import loadProgramDetails from "./queries/getProgramDetails";
+import loadWorkoutDetails from "./queries/getWorkout";
 
 // React general
 const container = document.getElementById("root");
@@ -46,7 +47,9 @@ const router = createBrowserRouter([
   {
     path: "/program/:programId/",
     element: <ProgramComp />,
-    loader: loadProgramDetails,
+    loader: ({ params }) => {
+      return loadProgramDetails(params);
+    },
     children: [
       {
         path: "details/",
@@ -59,9 +62,13 @@ const router = createBrowserRouter([
       {
         path: "workout/:workoutId/",
         element: <Workout />,
+        id: "workout",
+        loader: ({ params }) => {
+          return loadWorkoutDetails(params);
+        },
         children: [
           {
-            path: ":ExerciseIndex/",
+            path: ":exerciseIndex/",
             element: <Exercise />,
           },
         ],

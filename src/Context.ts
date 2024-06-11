@@ -6,7 +6,7 @@ import {
 
 type Focus = "mobility" | "cardio" | "weightTraining" | "coordination";
 
-export type User = {
+export interface User {
   name: String;
   current: {
     day: Number;
@@ -19,7 +19,7 @@ export type User = {
   };
   lastTimeTrained: Number;
   daysInARow: Number;
-};
+}
 
 export interface ProgramType {
   name: String;
@@ -42,6 +42,32 @@ export interface ProgramType {
     weightTraining: Number;
     coordination: Number;
   };
+}
+
+export interface ExerciseWithReps {
+  exercise: {
+    id: String;
+    name: String;
+    description: String;
+  };
+  reps: Number;
+}
+
+export interface ExerciseWithDuration {
+  exercise: {
+    id: String;
+    name: String;
+    description: String;
+  };
+  duration: Number;
+}
+
+export interface Workout {
+  id: String;
+  name: String;
+  category: Focus;
+  duration: Number;
+  exercises: Array<ExerciseWithReps | ExerciseWithDuration>;
 }
 
 export const ProgramContext = createContext({});
