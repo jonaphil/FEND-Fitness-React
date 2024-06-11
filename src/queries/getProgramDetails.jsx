@@ -1,9 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { apolloClient } from "../Context";
 
-export default function loadProgramDetails({ params }) {
-  //Apollo- Cache-keys.
-  const { programId } = params;
+export default function loadProgramDetails({ programId }) {
+  // TODO Apollo-Cache-keys.
   const GET_PROGRAM_DETAILS = gql`
     query GetProgramDetails($programId: ID!) {
       programs(where: { id: $programId }) {
