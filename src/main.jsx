@@ -11,8 +11,9 @@ import HelloWorld from "./pages/HelloWorld";
 import { ProgramDetails } from "./pages/ProgramDetails";
 import { ProgramComp } from "./pages/Program";
 import { ProgramStart } from "./pages/ProgramStart";
-import Workout from "./components/Workout";
-import Exercise from "./components/Exercise";
+import Workout from "./components/Workout/Workout";
+import Exercise from "./components/Workout/Exercise";
+import FinishWorkout from "./components/Workout/FinishWorkout";
 import loadProgramsList from "./queries/programsList";
 import loadProgramDetails from "./queries/getProgramDetails";
 import loadWorkoutDetails from "./queries/getWorkout";
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
             element: <Exercise />,
           },
         ],
+      },
+      {
+        path: "workout/:workoutId/end",
+        element: <FinishWorkout />,
       },
     ],
   },

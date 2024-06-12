@@ -1,4 +1,4 @@
-import isEven from "../helpers/generalFunctions";
+import isEven from "../../helpers/generalFunctions";
 export default function StatusList(_a) {
     var length = _a.length, currentExercise = _a.currentExercise;
     var array = new Array(length).fill(0);

@@ -3,11 +3,11 @@ import { Outlet, useParams } from "react-router-dom";
 import {
   Link,
   useLoaderData,
-} from "../../node_modules/react-router-dom/dist/index";
-import XClose from "../media/icons/X-close.svg?react";
-import ButtonLeft from "../media/icons/ButtonLeft.svg?react";
-import ButtonRight from "../media/icons/ButtonRight.svg?react";
-import { ProgramContext, ProgramType } from "../Context";
+} from "../../../node_modules/react-router-dom/dist/index";
+import XClose from "../../media/icons/X-close.svg?react";
+import ButtonLeft from "../../media/icons/ButtonLeft.svg?react";
+import ButtonRight from "../../media/icons/ButtonRight.svg?react";
+import { ProgramContext, ProgramType } from "../../Context";
 import StatusList from "./StatusList";
 
 export default function Workout({
@@ -22,7 +22,6 @@ export default function Workout({
   // const { data, error, loading } = useLoaderData();
   // const exerciseList = data.workouts[0].exercises;
   const exerciseList = useLoaderData().data.workouts[0].exercises;
-  console.log(exerciseList);
 
   const [currentExerciseState, setCurrentExercise] = useState(currentExercise);
 
@@ -40,7 +39,7 @@ export default function Workout({
         currentExercise={currentExerciseState}
         numExercises={exerciseList.length}
       >
-        <Outlet context={setCurrentExercise} />
+        <Outlet key={currentExercise} context={setCurrentExercise} />
       </ExerciseScreen>
       <h1>{exerciseList[currentExerciseState].exercise.name}</h1>
       <DescriptionCard />

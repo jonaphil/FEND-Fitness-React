@@ -1,4 +1,4 @@
-import isEven from "../helpers/generalFunctions";
+import isEven from "../../helpers/generalFunctions";
 
 export default function StatusList({
   length,

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MainScreen from "../components/MainScreen";
 import ProgressCircle from "../components/ProgressCircle/ProgressCircle.jsx";
-import Workout from "../components/Workout";
+import Workout from "../components/Workout/Workout.jsx";
 
 export default function HelloWorld() {
   const [state, setState] = useState(0);

@@ -1,25 +1,10 @@
+import germanTranslation from "../../helpers/translations";
+
 export default function WorkoutCard({ workoutOnDay }) {
   const { duration, category } = workoutOnDay.workout;
   const { day } = workoutOnDay;
 
   let bgColor;
-  let categoryGerman;
-  switch (category) {
-    case "mobility":
-      categoryGerman = "Beweglichkeit";
-      break;
-    case "coordination":
-      categoryGerman = "Koordination";
-      break;
-    case "cardio":
-      categoryGerman = "Ausdaur";
-      break;
-    case "weightTraining":
-      categoryGerman = "Krafttraining";
-      break;
-    default:
-      break;
-  }
   if (day % 3 === 0) {
     bgColor = "gradient-red";
   } else if (day % 3 === 1) {
@@ -37,7 +22,7 @@ export default function WorkoutCard({ workoutOnDay }) {
         <h3>Tag {day}</h3>
         <div className="flex flex-col">
           <p className="text-xs">{duration} Min.</p>
-          <p className="text-xs">{categoryGerman}</p>
+          <p className="text-xs">{germanTranslation[category]}</p>
         </div>
       </div>
     </div>

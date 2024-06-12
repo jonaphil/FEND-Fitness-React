@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import ProgramHero from "../components/ProgramHero";
-import ProgramInfoText from "../components/ProgramInfo";
-import ProgramStats from "../components/ProgramStats";
-import ProgramDaysList from "../components/ProgramDaysList";
+import ProgramHero from "../components/ProgramDetails/ProgramHero";
+import ProgramInfoText from "../components/ProgramDetails/ProgramInfo";
+import ProgramStats from "../components/ProgramDetails/ProgramStats";
+import ProgramDaysList from "../components/ProgramDetails/ProgramDaysList";
 import Button from "../components/Button";
 import { ProgramContext } from "../Context";
 

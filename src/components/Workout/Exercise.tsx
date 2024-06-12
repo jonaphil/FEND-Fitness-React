@@ -3,23 +3,41 @@ import {
   useParams,
   useRouteLoaderData,
   useOutletContext,
-} from "../../node_modules/react-router-dom/dist/index";
-import ProgressCircle from "./ProgressCircle/ProgressCircle";
+  useNavigate,
+} from "../../../node_modules/react-router-dom/dist/index";
+import ProgressCircle from "../ProgressCircle/ProgressCircle";
 
 export default function Exercise(): React.JSX.Element {
-  const exerciseIndex: Number = parseInt(useParams().exerciseIndex, 10); // did without deconstruction to be able to parse int.
+  const exerciseList: Array<Object> =
+    [...useRouteLoaderData("workout").data.workouts[0].exercises];
+  const navigate = useNavigate();
+
+  const exerciseIndex: number = parseInt(useParams().exerciseIndex, 10);
   const setCurrentExercise: (int: Number) => void = useOutletContext();
   setCurrentExercise(exerciseIndex); // FIXME work around warning on first rendering!
-  console.log(exerciseIndex);
-  const exercise: Object =
-    useRouteLoaderData("workout").data.workouts[0].exercises[exerciseIndex];
+
+  const exercise: Object = exerciseList[exerciseIndex];
   const { name, description, id } = exercise.exercise;
+
+  const setNextExercise = () => {
+    if (exerciseIndex < exerciseList.length - 1) {
+      navigate(`../${exerciseIndex + 1}`, {relative: "path"});
+    } else {
+      navigate(`../end`, {relative: "path"});
+    }
+  };
+
   if (exercise.reps) {
-    console.log(exercise);
-    return <ExerciseWithReps reps={exercise.reps} />;
+    return <ExerciseWithReps reps={exercise.reps} key={id} />;
   } else if (exercise.duration) {
-    console.log(exercise);
-    return <ExerciseWithDuration duration={exercise.duration} id={id} />;
+    return (
+      <ExerciseWithDuration
+        duration={10} 
+        key={id}
+        setNextExercise={setNextExercise}
+      />
+      {/* instead of exercise.duration */}
+    );
   }
 }
 
@@ -29,35 +47,30 @@ function ExerciseWithReps({ reps }: { reps: number }): React.JSX.Element {
 
 function ExerciseWithDuration({
   duration,
-  id,
+  setNextExercise,
 }: {
   duration: number;
-  id: String;
-}): React.JSX.Element {
+  setNextExercise: () => void;
+  }): React.JSX.Element {
   // FIXME Find a proper way to animate this in React
 
   const [timeLeft, setTimeLeft]: [number, (n) => void] = useState(duration);
-
+  if (timeLeft === 0) {
+    setNextExercise();
+  }
+  console.log(timeLeft);
   useEffect(() => {
-    console.log("start");
-    setTimeLeft(duration);
     const reduceTime: () => void = () => {
-      setTimeLeft((prevTimeLeft) => {
-        return prevTimeLeft > 0 ? prevTimeLeft - 0.1 : 0;
+      setTimeLeft((prevTimeLeft: number) => {
+        return prevTimeLeft >= 0.1 ? prevTimeLeft - 0.1 : 0;
       });
     };
-    // setTimeLeft(duration);
-    // let timeout: number = null;
-    // for (let i = 0; i < duration; i += 0.1) {
-    //   timeout = setTimeout(reduceTime, 100);
-    //   clearTimeout(timeout);
-    // }
     let interval = setInterval(reduceTime, 100);
     return () => {
       clearInterval(interval);
-      console.log("stop");
+      interval = null;
     };
-  }, [id]);
+  }, []);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">

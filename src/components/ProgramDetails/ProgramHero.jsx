@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import InfoDot from "./InfoDot";
-import XClose from "../media/icons/X-close.svg?react";
-import germanTranslation from "../helpers/translations";
+import XClose from "../../media/icons/X-close.svg?react";
+import germanTranslation from "../../helpers/translations";
 
 export default function ProgramHero({ name, focus, difficulty, duration }) {
   const colorDifficulty = {
