@@ -1,4 +1,4 @@
-import WorkoutCard from "./WorkoutCard";
+import WorkoutCard from "./WorkoutCard.jsx";
 
 export default function ProgramDaysList({ workoutsWithDay }) {
   const workoutsPreview = workoutsWithDay.slice(0, 3);

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Link, useLoaderData, } from "../../node_modules/react-router-dom/dist/index";
-import XClose from "../media/icons/X-close.svg?react";
-import ButtonLeft from "../media/icons/ButtonLeft.svg?react";
-import ButtonRight from "../media/icons/ButtonRight.svg?react";
+import { Link, useLoaderData, } from "../../../node_modules/react-router-dom/dist/index";
+import XClose from "../../media/icons/X-close.svg?react";
+import ButtonLeft from "../../media/icons/ButtonLeft.svg?react";
+import ButtonRight from "../../media/icons/ButtonRight.svg?react";
 import StatusList from "./StatusList";
 export default function Workout(_a) {
     // const program = useContext(ProgramContext) as ProgramType;
@@ -12,7 +12,6 @@ export default function Workout(_a) {
     // const { data, error, loading } = useLoaderData();
     // const exerciseList = data.workouts[0].exercises;
     var exerciseList = useLoaderData().data.workouts[0].exercises;
-    console.log(exerciseList);
     var _c = useState(currentExercise), currentExerciseState = _c[0], setCurrentExercise = _c[1];
     return (<div className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden bg-ddark">
       {/* create Element for Header */}
@@ -21,7 +20,7 @@ export default function Workout(_a) {
         <StatusList length={exerciseList.length} currentExercise={currentExerciseState}/>
       </div>
       <ExerciseScreen currentExercise={currentExerciseState} numExercises={exerciseList.length}>
-        <Outlet context={setCurrentExercise}/>
+        <Outlet key={currentExercise} context={setCurrentExercise}/>
       </ExerciseScreen>
       <h1>{exerciseList[currentExerciseState].exercise.name}</h1>
       <DescriptionCard />
