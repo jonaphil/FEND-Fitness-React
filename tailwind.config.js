@@ -19,8 +19,8 @@ module.exports = {
     "shadow-m-strong",
     "shadow-l",
     "border-dlight",
-
-    // Progress Circles
+   
+    //Progress Circles
     "w-15.5",
     "w-58.5",
     "h-15.5",
