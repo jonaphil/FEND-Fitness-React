@@ -9,10 +9,10 @@ import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
 import { ProgramDetails } from "./pages/ProgramDetails";
-import { ProgramComp } from "./pages/Program";
+import { Program } from "./pages/Program";
 import { ProgramStart } from "./pages/ProgramStart";
 import Workout from "./components/Workout/Workout";
-import Exercise from "./components/Workout/Exercise";
+import Exercise from "./components/Exercise/Exercise";
 import FinishWorkout from "./components/Workout/FinishWorkout";
 import loadProgramsList from "./queries/programsList";
 import loadProgramDetails from "./queries/getProgramDetails";
@@ -22,7 +22,7 @@ import loadWorkoutDetails from "./queries/getWorkout";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-// React Router
+// React Router // TODO Routing for Dashboard/Profile/ProgramsList
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/program/:programId/",
-    element: <ProgramComp />,
+    element: <Program />,
     loader: ({ params }) => {
       return loadProgramDetails(params);
     },
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "workout/:workoutId/end",
+        path: "workout/:workoutId/end/",
         element: <FinishWorkout />,
       },
     ],
@@ -79,21 +79,6 @@ const router = createBrowserRouter([
 ]);
 
 function Main() {
-  // User
-  //  const [userData, setUserData] = useState({
-  //   name: "Name",
-  //   current: {
-  //     day: 1,
-  //     programId: "",
-  //     programName: "Titel des Programs",
-  //     exercise: {
-  //       duration: 26,
-  //       focus: "Beweglichkeit",
-  //     },
-  //   },
-  //   lastTimeTrained: 0,
-  //   daysInARow: 0,
-  // });
   const userData = {
     name: "Name",
     current: {
@@ -106,7 +91,7 @@ function Main() {
         focus: "Beweglichkeit",
       },
     },
-    lastTimeTrained: 0,
+    lastTimeTrained: null,
     daysInARow: 0,
   };
 

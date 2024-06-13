@@ -46,32 +46,36 @@ export interface ProgramType {
 
 export interface ExerciseWithReps {
   exercise: {
-    id: String;
-    name: String;
-    description: String;
+    id: string;
+    name: string;
+    description: string;
   };
   reps: Number;
 }
 
 export interface ExerciseWithDuration {
   exercise: {
-    id: String;
-    name: String;
-    description: String;
+    id: string;
+    name: string;
+    description: string;
   };
   duration: Number;
 }
 
 export interface Workout {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   category: Focus;
   duration: Number;
   exercises: Array<ExerciseWithReps | ExerciseWithDuration>;
 }
 
+export type ExerciseTheme = "default" | "light" | "mono";
+
 export const ProgramContext = createContext({});
 export const UserContext = createContext({});
+export const ExerciseTheme = createContext({});
+
 export const apolloClient = new ApolloClient({
   uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cluu29pkz000008l91dji8p5l/master",
   cache: new InMemoryCache(),
