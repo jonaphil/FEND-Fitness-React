@@ -1,6 +1,19 @@
-export default function Button({ color = "gradient-red", children }) {
+export default function Button({
+  textColor = "ddark",
+  bgColor = "gradient-red",
+  onClick,
+  children,
+  small = false,
+}) {
   return (
-    <button className={`bg-${color} rounded-full px-6 py-3 text-ddark`}>
+    <button
+      className={`bg-${bgColor} rounded-full transition-all duration-500 ${
+        small
+          ? "flex h-7 w-7 flex-row items-center justify-center"
+          : "px-6 py-3"
+      } text-${textColor}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
