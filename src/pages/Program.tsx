@@ -6,7 +6,7 @@ import { ErrorPage } from "../components/StatusElements/Error";
 import { ProgramContext, ProgramType } from "../Context";
 import { useLoaderData } from "../../node_modules/react-router-dom/dist/index";
 
-export function ProgramComp(): React.JSX.Element {
+export function Program(): React.JSX.Element {
   const programQuery = useLoaderData();
 
   if (programQuery.loading) {
@@ -26,7 +26,7 @@ export function ProgramComp(): React.JSX.Element {
   return (
     <main className="bg-ddark">
       <ProgramContext.Provider value={programObj}>
-        <div className="min-w-screen flex min-h-screen flex-col items-stretch justify-stretch bg-ddark">
+        <div className="min-w-screen flex h-screen flex-col items-stretch justify-stretch overflow-hidden bg-ddark">
           <Outlet />
         </div>
       </ProgramContext.Provider>

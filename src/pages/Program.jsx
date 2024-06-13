@@ -15,7 +15,7 @@ import { LoadingPage } from "../components/StatusElements/Loading";
 import { ErrorPage } from "../components/StatusElements/Error";
 import { ProgramContext } from "../Context";
 import { useLoaderData } from "../../node_modules/react-router-dom/dist/index";
-export function ProgramComp() {
+export function Program() {
     var _a, _b;
     var programQuery = useLoaderData();
     if (programQuery.loading) {
@@ -28,7 +28,7 @@ export function ProgramComp() {
     var programObj = __assign(__assign({}, (_a = programQuery === null || programQuery === void 0 ? void 0 : programQuery.data) === null || _a === void 0 ? void 0 : _a.programs[0]), { stats: getProgramStats((_b = programQuery === null || programQuery === void 0 ? void 0 : programQuery.data) === null || _b === void 0 ? void 0 : _b.programs[0].workoutsWithDay) });
     return (<main className="bg-ddark">
       <ProgramContext.Provider value={programObj}>
-        <div className="min-w-screen flex min-h-screen flex-col items-stretch justify-stretch bg-ddark">
+        <div className="min-w-screen flex h-screen flex-col items-stretch justify-stretch overflow-hidden bg-ddark">
           <Outlet />
         </div>
       </ProgramContext.Provider>

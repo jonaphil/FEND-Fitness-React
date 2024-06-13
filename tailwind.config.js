@@ -57,9 +57,30 @@ module.exports = {
     // ExerciseList
     "border-4",
     "border-dmedium",
+    "border-ddark",
 
     // Header
     "absolute",
+
+    // CounterScreen,
+    "min-w-58.5",
+
+    // Button,
+    "text-ddark",
+    "text-dmedium",
+    "text-dlight",
+
+    // DescriptionCard
+    "-translate-3/4screen",
+    "-translate-y-14",
+    "flex-col",
+    "items-center",
+    "p-9",
+    "pb-28",
+    "pt-16",
+    "px-6",
+    "py-4",
+    "flex-row",
   ],
   theme: {
     extend: {
@@ -97,6 +118,7 @@ module.exports = {
         53.75: "13.4375rem",
         58.5: "14.625rem",
         93.75: "23.4375rem",
+        "3/4screen": "75vh",
       },
       borderRadius: {
         "2.5xl": "1.25rem",
@@ -116,6 +138,7 @@ module.exports = {
       tracking: {
         widest: ".2em",
       },
+      translate: {},
     },
   },
   plugins: [],
