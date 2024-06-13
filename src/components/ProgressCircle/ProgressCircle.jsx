@@ -49,7 +49,7 @@ export default function ProgressCircle({
       {/* FIXME */}
       <div
         className={`relative h-full w-full ${
-          givenSize === "large" ? "rounded-full shadow-m-strong" : ""
+          givenSize === "large" && "rounded-full shadow-m-strong"
         }`}
       >
         <SvgProgressCircle

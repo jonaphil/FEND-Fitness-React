@@ -1,10 +1,16 @@
+import german from "../../helpers/translations";
+
 export default function ChartLegend() {
   return (
     <ul className="flex flex-col justify-evenly gap-4.5 pr-10">
-      <LegendElement color={"weightTraining"}>Krafttraining</LegendElement>
-      <LegendElement color={"coordination"}>Koordination</LegendElement>
-      <LegendElement color={"cardio"}>Ausdauer</LegendElement>
-      <LegendElement color={"mobility"}>Beweglichkeit</LegendElement>
+      <LegendElement color={"weightTraining"}>
+        {german["weightTraining"]}
+      </LegendElement>
+      <LegendElement color={"coordination"}>
+        {german["coordination"]}
+      </LegendElement>
+      <LegendElement color={"cardio"}>{german["cardio"]}</LegendElement>
+      <LegendElement color={"mobility"}>{german["mobility"]}</LegendElement>
     </ul>
   );
 }

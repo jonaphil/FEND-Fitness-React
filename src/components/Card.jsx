@@ -23,7 +23,7 @@ export default function Card({
       break;
   }
 
-  shadow ? (layout.shadow = `shadow-${shadow}`) : 0;
+  shadow && (layout.shadow = `shadow-${shadow}`);
   return (
     <div
       className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col items-start rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}
