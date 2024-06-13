@@ -11,6 +11,7 @@ export default function SvgProgressCircle({
   className = "",
 }) {
   const cleanInputPercent = (inputPercent) => {
+
     const percentDec = inputPercent % 100.1;
     const cleanInput = percentDec + (inputPercent / 100.1) * 0.1;
     return cleanInput;
@@ -30,6 +31,7 @@ export default function SvgProgressCircle({
   const lines = {
     outerArc: `M ${center.x} ${
       center.y - outerRadius
+
     } A ${outerRadius} ${outerRadius} 0 ${cleanPercentage > 50 ? 1 : 0} 1 ${
       Math.sin(rad) * outerRadius + center.x
     } ${-Math.cos(rad) * outerRadius + center.y}`,
@@ -37,9 +39,10 @@ export default function SvgProgressCircle({
       -Math.cos(rad) * innerRadius + center.y
     }`,
     innerArc: `A ${innerRadius} ${innerRadius} 1 ${
+
       cleanPercentage > 50 ? 1 : 0
     } 0 ${center.x} ${center.y - innerRadius}`,
-    zeroStraigtLine: `z`,
+    zeroStraightLine: `z`,
   };
 
   // styling
@@ -84,7 +87,7 @@ export default function SvgProgressCircle({
           lines.outerArc +
           lines.endStraightLine +
           lines.innerArc +
-          lines.zeroStraigtLine
+          lines.zeroStraightLine
         }
         fill={filledColor}
       ></path>

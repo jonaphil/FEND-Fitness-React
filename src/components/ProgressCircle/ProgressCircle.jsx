@@ -27,6 +27,7 @@ export default function ProgressCircle({
           break;
         case "light":
           svgCircleProps.emptyColor = "rgba(0,0,0,0.1)";
+
           break;
         default:
           break;

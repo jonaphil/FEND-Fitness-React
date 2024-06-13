@@ -1,4 +1,5 @@
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 export default function CardList({ listArray }) {
   const genBackground = (index) => {
@@ -12,6 +13,7 @@ export default function CardList({ listArray }) {
     }
   };
 
+  //FIXME: Use a real Loading-Logic!
   if (listArray.length === 0) {
     return (
       <Card bgColor="dmedium" justify={"center"}>
@@ -25,9 +27,11 @@ export default function CardList({ listArray }) {
       {listArray.map((item, index) => {
         return (
           <li key={index.toString()} className="w-full">
-            <Card bgColor={genBackground(index % 3)} justify={"center"}>
-              <h2>{item.name}</h2>
-            </Card>
+            <Link to={`/program/${item.id}`}>
+              <Card bgColor={genBackground(index % 3)} justify={"center"}>
+                <h2>{item.name}</h2>
+              </Card>
+            </Link>
           </li>
         );
       })}

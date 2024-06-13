@@ -23,9 +23,7 @@ export default function Card({
       break;
   }
 
-  console.log(`${shadow} : ${layout.shadow}`);
   shadow ? (layout.shadow = `shadow-${shadow}`) : 0;
-  console.log(`${shadow} : ${layout.shadow}`);
   return (
     <div
       className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col items-start rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}

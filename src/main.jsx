@@ -1,33 +1,27 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
-
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Dashboard from "./pages/Dashboard";
-import ExcerciseList from "./pages/ExcerciseList";
+import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
+import { ProgramDetailsPage } from "./pages/ProgramDetails";
 
 // React general
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-// React Router TODO
+// React Router
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard name={"Name"} currentExcercise={"Exc3"} />,
   },
   {
-    path: "/excercise-list",
-    element: <ExcerciseList />,
+    path: "/programs",
+    element: <ProgramsList />,
   },
   {
     path: "/profile",
@@ -37,9 +31,13 @@ const router = createBrowserRouter([
     path: "/hello-world",
     element: <HelloWorld percentage={40} />,
   },
+  {
+    path: "/program/:programId",
+    element: <ProgramDetailsPage />,
+  },
 ]);
 
-//Apollo TODO
+// Apollo
 const clientApollo = new ApolloClient({
   uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cluu29pkz000008l91dji8p5l/master",
   cache: new InMemoryCache(),
