@@ -11,15 +11,17 @@ export default function SvgProgressCircle({
   className = "",
 }) {
   const cleanInputPercent = (inputPercent) => {
-    return parseInt( String( inputPercent).slice(-2), 10 );
-  }
 
-  //geometrics
+    const percentDec = inputPercent % 100.1;
+    const cleanInput = percentDec + (inputPercent / 100.1) * 0.1;
+    return cleanInput;
+  };
+
+  // geometrics
   const size = 2 * outerRadius + strokeWidth;
+  const cleanPercentage = cleanInputPercent(progress);
 
-  const calcProgress = cleanInputPercent(progress) > 100 ? cleanInputPercent(progress) - 99.9 : cleanInputPercent(progress) - 0.1; //FIXME: less shitty way!
-  console.log(calcProgress);
-  const rad = (calcProgress / 100) * 2 * Math.PI;
+  const rad = (cleanPercentage / 100.1) * 2 * Math.PI;
 
   const center = {
     x: size / 2,
@@ -29,21 +31,21 @@ export default function SvgProgressCircle({
   const lines = {
     outerArc: `M ${center.x} ${
       center.y - outerRadius
-    } A ${outerRadius} ${outerRadius} 0 ${calcProgress > 50 ? 1 : 0} 1 ${
+
+    } A ${outerRadius} ${outerRadius} 0 ${cleanPercentage > 50 ? 1 : 0} 1 ${
       Math.sin(rad) * outerRadius + center.x
     } ${-Math.cos(rad) * outerRadius + center.y}`,
     endStraightLine: `L ${Math.sin(rad) * innerRadius + center.x} ${
       -Math.cos(rad) * innerRadius + center.y
     }`,
     innerArc: `A ${innerRadius} ${innerRadius} 1 ${
-      calcProgress > 50 ? 1 : 0
-    } 0 ${center.x} ${center.y - innerRadius}`,
-    zeroStraigtLine: `z`,
-  };
-  console.log(`${-Math.cos(rad)} * ${outerRadius + center.y}`);
-  console.log(calcProgress);
 
-  //styling
+      cleanPercentage > 50 ? 1 : 0
+    } 0 ${center.x} ${center.y - innerRadius}`,
+    zeroStraightLine: `z`,
+  };
+
+  // styling
   const style = {
     strokeWidth: `${strokeWidth}`,
     stroke: `${borderColor}`,
@@ -85,7 +87,7 @@ export default function SvgProgressCircle({
           lines.outerArc +
           lines.endStraightLine +
           lines.innerArc +
-          lines.zeroStraigtLine
+          lines.zeroStraightLine
         }
         fill={filledColor}
       ></path>

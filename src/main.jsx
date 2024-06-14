@@ -2,27 +2,25 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import "./index.css";
 import Dashboard from "./pages/Dashboard";
 import ProgramsList from "./pages/ProgramsList";
 import Profile from "./pages/Profile";
 import HelloWorld from "./pages/HelloWorld";
-import ProgramDetails from "./pages/ProgramDetails";
-import CreateEntries from "./helpers/CreateEntries";
+import { ProgramDetailsPage } from "./pages/ProgramDetails";
 
 // React general
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-// React Router TODO
+// React Router
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard name={"Name"} currentExcercise={"Exc3"} />,
   },
   {
-    path: "/programs-list",
+    path: "/programs",
     element: <ProgramsList />,
   },
   {
@@ -39,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/program/:programId",
-    element: <ProgramDetails />,
+    element: <ProgramDetailsPage />,
   },
 ]);
 

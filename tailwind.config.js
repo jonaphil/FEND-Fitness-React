@@ -2,7 +2,7 @@ module.exports = {
   content: ["./src/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   safelist: [
     // This is needed for classes which are dynamically named and applied so tailwind doesn't know beforehand they are used.
-    // This is for the Card Component This is a test.
+    // Card Component
     "bg-gradient-red",
     "bg-gradient-green",
     "bg-gradient-blue",
@@ -19,12 +19,40 @@ module.exports = {
     "shadow-m-strong",
     "shadow-l",
     "border-dlight",
-    
+   
     //Progress Circles
     "w-15.5",
     "w-58.5",
     "h-15.5",
     "h-58.5",
+    "bg-cardio",
+    "bg-coordination",
+    "bg-mobility",
+    "bg-weightTraining",
+
+    // Info Dots
+    "bg-ddark",
+    "bg-dlight",
+    "h-1",
+    "h-2",
+    "h-3",
+    "h-4",
+    "h-5",
+    "h-6",
+    "h-7",
+    "h-8",
+    "h-9",
+    "h-10",
+    "w-1",
+    "w-2",
+    "w-3",
+    "w-4",
+    "w-5",
+    "w-6",
+    "w-7",
+    "w-8",
+    "w-9",
+    "w-10",
   ],
   theme: {
     extend: {
@@ -32,11 +60,18 @@ module.exports = {
         ddark: "#202430",
         dmedium: "#3A4151",
         dlight: "#FBFBFB",
+        cardio: "#00aa00",
+        coordination: "#4400dd",
+        mobility: "#ffbb00",
+        weightTraining: "#bb2211",
       },
       fontFamily: {
         app: "Poppins, sans-serif",
       },
-      fontSize: {},
+      fontSize: {
+        "2xs": "0.75rem",
+        "3xs": "0.625rem",
+      },
       fontWeight: {
         bold: 700,
         regular: 400,
@@ -68,6 +103,9 @@ module.exports = {
         "m-strong": "0px 3px 10px rgba(0, 0, 0, 0.35)",
         l: "2px 5px 10px rgba(0, 0, 0, 0.25)",
         inside: "0px 0px 2px 5px #000000 inset",
+      },
+      tracking: {
+        widest: ".2em",
       },
     },
   },
