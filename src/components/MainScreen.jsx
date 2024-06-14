@@ -1,7 +1,11 @@
 import Navi from "./Navi";
 
-export default function MainScreen({ page = "home", children , showNavigation = true}) {
-  const pageButton = page === "excerciseList" ? "dumbbell" : page;
+export default function MainScreen({
+  page = "home",
+  children,
+  showNavigation = true,
+}) {
+  const pageButton = page === "programsList" ? "dumbbell" : page;
 
   return (
     <main className="relative min-h-screen w-full bg-ddark">
@@ -9,7 +13,7 @@ export default function MainScreen({ page = "home", children , showNavigation = 
         {children}
       </div>
 
-      { showNavigation? <Navi activeButton={pageButton} /> : 0}
+      {showNavigation ? <Navi activeButton={pageButton} /> : 0}
     </main>
   );
 }
