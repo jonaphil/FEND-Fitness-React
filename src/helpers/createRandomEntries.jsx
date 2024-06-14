@@ -214,8 +214,8 @@ export function CreateRandomWorkoutButton({ exerciseList }) {
     const possibleIndices = generateRandomList(exerciseList.length); // Why is the simple Copy not working? There is some odd bug!
     const amountExercises = randomInt(
       exerciseList.length < 20 ? exerciseList.length : 20,
-      10
-    ); // between 10 and 20 exercises
+      exerciseList.length < 10 ? 0 : 10
+    );
     const duration = randomInt(amountExercises * 1.2, amountExercises * 1.7); // between 1.2 and 1.7 minutes per exercise
     const exerciseTypeList = [
       ["reps", "ExerciseWithReps"],
@@ -300,7 +300,7 @@ export function CreateRandomProgramButton({ workoutList, assetList }) {
       };
       const workoutListLength = randomInt(
         workoutList.length < 28 ? workoutList.length : 28,
-        7
+        workoutList.length < 7 ? 0 : 7
       );
       let workoutListString = "[";
       for (let day = 1; day <= workoutListLength; day += 1) {
