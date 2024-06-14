@@ -1,16 +1,16 @@
-import "../output.css";
-import Navi from "../components/Navi.jsx";
-import MainScreen from "../components/MainScreen.jsx";
-import Card from "../components/Card.jsx";
+import { useContext } from "react";
+import { UserContext } from "../Context";
+import MainScreen from "../components/MainScreen";
+import Card from "../components/Card";
 
-export default function Dashboard({ name, currentExcercise }) {
-  //  const { name, currentExcercise } = profileObj; //? Why not working?
-  console.log(name);
-  console.log(currentExcercise);
-  //TODO Rework dashboard, svg, Links, etc.
+// import "../output.css";
+
+export default function Dashboard() {
+  const user = useContext(UserContext);
+  // TODO Rework dashboard, svg, Links, etc.
   return (
     <MainScreen page={"home"}>
-      <h1 className="self-start">Hi {name}!</h1>
+      <h1 className="self-start">Hi {user.name}!</h1>
       <img
         className="mb-6 mt-3 self-center"
         src="../media/images/Layer 11 1.png"
@@ -24,9 +24,11 @@ export default function Dashboard({ name, currentExcercise }) {
       </div>
 
       <Card bgColor={"dmedium"} justify={"end"} shadow={"l"}>
-        <h3>Tag 2</h3>
-        <h2>Titel des Programms</h2>
-        <p>26 min - Beweglichkeit</p>
+        <h3>Tag {user.current.day}</h3>
+        <h2>{user.current.programName}</h2>
+        <p>
+          {user.current.exercise.duration} min - {user.current.exercise.focus}
+        </p>
       </Card>
 
       {/*FIXME: White space at the end of document!*/}

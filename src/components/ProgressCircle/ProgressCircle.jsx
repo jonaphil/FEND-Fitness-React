@@ -1,10 +1,10 @@
-import SvgProgressCircle from "./SvgComponent/SvgProgressCircle.jsx";
+import SvgProgressCircle from "./SvgComponent/SvgProgressCircle";
 import { colors } from "../../styles/variables";
 
 export default function ProgressCircle({
   progress,
-  background = "dark", //dark, light
-  givenSize = "small", //small, large
+  background = "dark", // dark, light
+  givenSize = "small", // small, large
   children,
 }) {
   // TODO Question: How to dynamic assign values to const-variables.
@@ -15,7 +15,7 @@ export default function ProgressCircle({
     emptyColor: colors.dmedium,
     borderColor: colors.ddark,
     strokeWidth: 0,
-    progress: progress,
+    progress,
   };
 
   switch (givenSize) {
@@ -27,7 +27,6 @@ export default function ProgressCircle({
           break;
         case "light":
           svgCircleProps.emptyColor = "rgba(0,0,0,0.1)";
-
           break;
         default:
           break;

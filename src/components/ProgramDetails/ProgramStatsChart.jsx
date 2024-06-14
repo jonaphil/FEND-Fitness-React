@@ -1,6 +1,6 @@
 import { Chart as ChartJS, ArcElement } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import { colors } from "../styles/variables";
+import { colors } from "../../styles/variables";
 
 ChartJS.register(ArcElement);
 

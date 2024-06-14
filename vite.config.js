@@ -7,6 +7,7 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
   root: "src",
   build: {
+    sourcemap: true,
     outDir: "../dist",
     rollupOptions: {
       input: {
@@ -15,4 +16,7 @@ export default defineConfig({
     },
   },
   plugins: [react(), svgr()],
+  optimizeDeps: {
+    force: true,
+  },
 });

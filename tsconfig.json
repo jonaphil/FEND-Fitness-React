@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "es6",
+    "lib": ["DOM", "ESNext"],
+    "jsx":"preserve",
+    "esModuleInterop": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/", "build/", "scripts/"]
+}
