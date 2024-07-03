@@ -37,10 +37,10 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <Profile />,
   },
-  {
-    path: "/options",
-    element: <CreateEntries />,
-  },
+  // {
+  //   path: "/options",
+  //   element: <CreateEntries />,
+  // },
   {
     path: "/hello-world",
     element: <HelloWorld percentage={40} />,
@@ -84,11 +84,14 @@ const router = createBrowserRouter([
 
 function Main() {
   const userData = {
-    name: "Name",
+    name: "Otto",
+    image: "/media/images/exampleUser.jpg",
     current: {
       day: 1,
       programId: "",
-      programName: "Titel des Programs",
+      programName: "Musterprogramm",
+      length: 25, //FIXME: Has to be generated!
+      progress: 4, //FIXME: Has to be calculated!
       exercise: {
         id: "",
         duration: 26,
