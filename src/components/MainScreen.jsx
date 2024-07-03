@@ -9,7 +9,7 @@ export default function MainScreen({
 
   return (
     <main className="relative min-h-screen w-full bg-ddark">
-      <div className="relative box-border flex h-full flex-col items-center justify-center gap-3 pb-17.5 pl-4 pr-4.5 pt-10">
+      <div className="relative box-border flex h-screen flex-col items-center gap-3 overflow-x-scroll pb-17.5 pl-4 pr-4.5 pt-10">
         {children}
       </div>
 
