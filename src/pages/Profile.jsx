@@ -1,30 +1,39 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../Context";
 import MainScreen from "../components/MainScreen";
 import Card from "../components/Card";
+import ProgressCircle from "../components/ProgressCircle/ProgressCircle";
 
 export default function Profile() {
-  /*
-  TODO
-  This Component is just a sketch, to have a working page. There are real components Missing, especially the progress-card
-  */
+  const user = useContext(UserContext);
   return (
     <MainScreen page={"profile"}>
-      <h2 className="self-start">Name</h2>
-      <div className="mb-20 mt-12 flex flex-col items-center gap-2">
+      <h2 className="self-start">{user.name}</h2>
+      <div className="mb-9 mt-22 flex flex-col items-center gap-2">
         <img
           className="h-30 w-30 rounded-full bg-gradient-blue"
-          src=""
+          src={`${user.image}`}
           alt=""
         />
-        <p>Profil bearbeiten</p>
+        {/* FIXME: LinkTo */}
+        <Link to={"/"}>Profil bearbeiten</Link>
       </div>
       <div className="flex w-full flex-col gap-2">
         <p>Aktueller Trainingsplan</p>
         <Card size={"s"} bgColor={"dmedium"} shadow={"m-strong"}>
-          <div className="flex flex-row gap-6">
-            <div className="h-16 w-16 bg-gradient-blue">40%</div>
-            <div className="flex flex-col">
-              <p>Titel</p>
-              <p className="text-xs">1 von 8 geschafft</p>
+          <div className="flex flex-row items-center gap-6">
+            <ProgressCircle
+              progress={user.current.progress}
+              elementSize={"15.5"}
+            >
+              {user.current.progress}%
+            </ProgressCircle>
+            <div className="flex flex-col items-stretch">
+              <p>{user.current.programName}</p>
+              <p className="text-xs">
+                {user.current.day} von {user.current.length} geschafft
+              </p>
             </div>
           </div>
         </Card>
