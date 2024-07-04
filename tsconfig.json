@@ -3,8 +3,16 @@
     "skipLibCheck": true,
     "module": "es6",
     "lib": ["DOM", "ESNext"],
-    "jsx":"preserve",
+    "jsx": "preserve",
     "esModuleInterop": true,
+    "paths": {
+      "@components": ["./src/componenets"],
+      "@views": ["./src/views"],
+      "@utils": ["./src/utils"],
+      "@contexts": ["./src/contexts"],
+      "@adapters": ["./src/adapters"],
+      "@assets": ["./src/assets"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/", "build/", "scripts/"]
