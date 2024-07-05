@@ -1,7 +1,7 @@
 export default function Card({
   bgColor,
   size,
-  justify,
+  justify = "between",
   className = "",
   children,
   shadow,
@@ -11,10 +11,19 @@ export default function Card({
     w: "w-full",
     p: "p-12.5",
     shadow: "shadow-m",
-    itmes: "items-start",
+    items: "items-start",
+    gap: "0",
   };
 
   switch (size) {
+    case "floating":
+      layout.h = "h-fit";
+      layout.p = "pb-8 pl-5 pr-5 pt-7";
+      layout.w = "w-80";
+      layout.items = "center";
+      layout.gap = 8;
+      break;
+
     case "s":
       layout.h = "h-fit";
       layout.p = "pb-8 pl-5 pr-5 pt-7";
@@ -33,7 +42,7 @@ export default function Card({
   shadow && (layout.shadow = `shadow-${shadow}`);
   return (
     <div
-      className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col ${layout.items} rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}
+      className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col ${layout.items} gap-${layout.gap} rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}
     >
       {children}
     </div>
