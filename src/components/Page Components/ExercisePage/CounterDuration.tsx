@@ -37,7 +37,7 @@ export default function CounterDuration({
         givenSize={"large"}
         background={exerciseTheme === "light" ? "light" : "dark"}
       >
-        <h1>{Math.round(timeLeft)} sec</h1>
+        <h1 className="text-center">{Math.round(timeLeft)}s</h1>
       </ProgressCircle>
     </div>
   );

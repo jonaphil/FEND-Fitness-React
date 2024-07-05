@@ -23,7 +23,7 @@ export default function CounterDuration(_a) {
     }, []);
     return (<div className="flex h-full w-full flex-col items-center justify-center">
       <ProgressCircle progress={(1 - timeLeft / duration) * 100} givenSize={"large"} background={exerciseTheme === "light" ? "light" : "dark"}>
-        <h1>{Math.round(timeLeft)} sec</h1>
+        <h1 className="text-center">{Math.round(timeLeft)}s</h1>
       </ProgressCircle>
     </div>);
 }

@@ -9,7 +9,7 @@ export default function CardList({ listArray }) {
       {listArray.map((item, index) => {
         return (
           <li key={index.toString()} className="w-full">
-            <Link to={`/program/${item.id}/details/`}>
+            <Link to={`/program/${item.id}/details`}>
               <Card bgColor={bgColorArr[index % 3]} justify={"center"}>
                 <h2>{item.name}</h2>
               </Card>
