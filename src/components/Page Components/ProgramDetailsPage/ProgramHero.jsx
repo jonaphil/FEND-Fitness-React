@@ -12,7 +12,7 @@ export default function ProgramHero({ name, focus, difficulty, duration }) {
 
   return (
     <>
-      <div className="flex h-[75vh] w-full flex-col items-center justify-between bg-gradient-red px-5 pb-4 pt-6">
+      <div className="flex h-[75vh] w-full shrink-0 flex-col items-center justify-between bg-gradient-red px-5 pb-4 pt-6">
         <div className="self-end">
           <Link to={"/programs"}>
             <XClose />

@@ -1,17 +1,16 @@
 import { useLoaderData } from "react-router-dom";
-import CardList from "@components/CardList";
-import MainScreen from "@components/MainScreen";
-import { LoadingButton } from "@components/StatusElements/Loading";
-import { ErrorButton } from "@components/StatusElements/Error";
+import CardList from "@components/Page Components/ProgramsListPage/CardList";
+import LoadingElement from "@components/simple Components/LoadingElement";
+import ErrorElement from "@components/simple Components/ErrorElement";
 
 export default function ProgramsList() {
   const { data, loading, error } = useLoaderData();
   return (
-    <MainScreen page="programsList">
+    <>
       <h2 className="mb-10 self-start">Browse</h2>
-      {loading && <LoadingButton />}
+      {loading && <LoadingElement />}
       {data && <CardList listArray={data.programs} />}
-      {error && <ErrorButton />}
-    </MainScreen>
+      {error && <ErrorElement />}
+    </>
   );
 }

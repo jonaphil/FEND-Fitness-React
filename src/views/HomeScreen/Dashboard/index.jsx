@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "@contexts/Context";
-import MainScreen from "@components/MainScreen";
-import Card from "@components/Card";
+import Card from "@components/simple Components/Card";
 import WomanSVG from "@assets/icons/WomanYoga.svg?react";
 
 // import "../output.css";
@@ -10,7 +9,7 @@ import WomanSVG from "@assets/icons/WomanYoga.svg?react";
 export default function Dashboard() {
   const user = useContext(UserContext);
   return (
-    <MainScreen page={"home"}>
+    <>
       <h1 className="self-start">Hi {user.name}!</h1>
       {/* FIXME Correct way of using a picture? as an svg?*/}
       <WomanSVG
@@ -32,6 +31,6 @@ export default function Dashboard() {
           {user.current.exercise.duration} min - {user.current.exercise.focus}
         </p>
       </Card>
-    </MainScreen>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate, useOutletContext, } from "../../../node_modules/react-router-dom/dist/index";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { ExerciseTheme, } from "@contexts/Context";
 import Button from "@components/simple Components/Button";
 import CountScreen from "@components/Page Components/ExercisePage/CountScreen";

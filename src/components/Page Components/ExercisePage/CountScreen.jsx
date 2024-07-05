@@ -1,4 +1,4 @@
-import { Link } from "../../../node_modules/react-router-dom/dist/index";
+import { Link } from "react-router-dom";
 import { colors } from "@utils/styles/variables";
 import ButtonLeft from "@assets/icons/ButtonLeft.svg?react";
 import ButtonRight from "@assets/icons/ButtonRight.svg?react";

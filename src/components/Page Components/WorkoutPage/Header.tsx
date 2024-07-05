@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "../../../node_modules/react-router-dom/dist/index";
+import { Link } from "react-router-dom";
 import { ExerciseTheme } from "@contexts/Context";
 import { colors } from "@utils/styles/variables";
 import XClose from "@assets/icons/X-close.svg?react";

@@ -1,8 +1,5 @@
 import { useContext } from "react";
-import {
-  useNavigate,
-  useOutletContext,
-} from "../../../node_modules/react-router-dom/dist/index";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   ExerciseTheme,
   ExerciseWithDuration,

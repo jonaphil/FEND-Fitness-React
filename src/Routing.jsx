@@ -36,66 +36,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { createBrowserRouter, redirect } from "react-router-dom";
 import HomeScreen from "@views/HomeScreen";
-import Dashboard from "@views/Dashboard";
-import ProgramsList from "@views/ProgramsList";
-import Profile from "@views/Profile";
+import Dashboard from "@views/HomeScreen/Dashboard";
+import ProgramsList from "@views/HomeScreen/ProgramsList";
+import Profile from "@views/HomeScreen/Profile";
 import HelloWorld from "@views/HelloWorld";
 import ProgramDetails from "@views/Program/ProgramDetails";
 import Program from "@views/Program";
 import ProgramStart from "@views/Program/ProgramStart";
-import Workout from "@views/WorkoutPage";
-import Exercise from "@views/ExercisePage";
-import FinishWorkout from "@views/FinishWorkout";
-import getProgramsList from "@adapters/queries/programsList";
+import Workout from "@views/Program/Workout";
+import Exercise from "@views/Program/Workout/Exercise";
+import FinishWorkout from "@views/Program/FinishWorkout";
+import getProgramsList from "@adapters/queries/getProgramsList";
 import getProgramDetails from "@adapters/queries/getProgramDetails";
-import getWorkoutDetails from "@adapters/queries/getWorkout";
+import getWorkoutDetails from "@adapters/queries/getWorkoutDetails";
 // React Router // TODO Routing for Dashboard/Profile/ProgramsList
 var router = createBrowserRouter([
     {
-        path: "/home",
+        path: "/",
+        loader: function () { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, redirect("/home/dashboard/")];
+            });
+        }); },
+    },
+    {
+        path: "/home/",
         element: <HomeScreen />,
         children: [
             {
-                path: "/dashboard",
+                path: "dashboard/",
                 element: <Dashboard />,
             },
             {
-                path: "/programs",
+                path: "programs/",
                 element: <ProgramsList />,
                 loader: getProgramsList,
             },
             {
-                path: "/profile",
+                path: "profile/",
                 element: <Profile />,
             },
         ],
     },
     {
-        path: "/",
-        loader: function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                redirect("/home/dashboard");
-                return [2 /*return*/];
-            });
-        }); },
-    },
-    {
-        path: "/programs",
-        element: <ProgramsList />,
-        loader: getProgramsList,
-    },
-    {
-        path: "/profile",
-        element: <Profile />,
-    },
-    // {
-    //   path: "/options",
-    //   element: <CreateEntries />,
-    // },
-    {
         path: "/hello-world",
         element: <HelloWorld percentage={40}/>,
     },
+    //TODO ProgramDetails
+    //TODO currentWorkout
     {
         path: "/program/:programId/",
         element: <Program />,
@@ -111,6 +99,7 @@ var router = createBrowserRouter([
             {
                 path: "start/",
                 element: <ProgramStart />,
+                //FIXME ProgramStart -> WorkoutStart
             },
             {
                 path: "workout/:workoutId/",

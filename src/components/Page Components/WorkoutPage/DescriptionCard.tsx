@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ExerciseTheme } from "../../Context";
+import { ExerciseTheme } from "@contexts/Context";
 import Button from "@components/simple Components/Button";
 
 export default function DescriptionCard({

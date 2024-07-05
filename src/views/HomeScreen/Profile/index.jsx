@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "@contexts/Context";
-import MainScreen from "@components/MainScreen";
-import Card from "@components/Card";
-import ProgressCircle from "@components/ProgressCircle/ProgressCircle";
+import Card from "@components/simple Components/Card";
+import ProgressCircle from "@components/simple Components/ProgressCircle/ProgressCircle";
 
 export default function Profile() {
   const user = useContext(UserContext);
   return (
-    <MainScreen page={"profile"}>
+    <>
       <h2 className="self-start">{user.name}</h2>
       <div className="mb-9 mt-22 flex flex-col items-center gap-2">
         <img
@@ -38,6 +37,6 @@ export default function Profile() {
           </div>
         </Card>
       </div>
-    </MainScreen>
+    </>
   );
 }

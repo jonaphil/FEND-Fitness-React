@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "../../../../node_modules/react-router-dom/dist/index";
+import { Link } from "react-router-dom";
 import { colors } from "@utils/styles/variables";
 import Button from "@components/simple Components/Button";
 import { ProgramContext, ProgramType } from "@contexts/Context";

@@ -1,17 +1,16 @@
-import MainScreen from "@components/MainScreen";
+import getEntryList from "@adapters/queries/getEntryList";
+import { LoadingButton } from "@components/simple Components/StatusElements/Loading";
 import {
   CreateRandomExerciseButton,
   CreateRandomWorkoutButton,
   CreateRandomProgramButton,
 } from "./createRandomEntries";
-import getEntryList from "@adapters/queries/entriesList";
-import { LoadingButton } from "@components/StatusElements/Loading";
 
 export default function CreateEntries() {
   const entriesFetch = getEntryList();
 
   return (
-    <MainScreen>
+    <>
       <CreateRandomExerciseButton />
       {entriesFetch.loading ? (
         <LoadingButton />
@@ -28,6 +27,6 @@ export default function CreateEntries() {
           />
         </>
       )}
-    </MainScreen>
+    </>
   );
 }

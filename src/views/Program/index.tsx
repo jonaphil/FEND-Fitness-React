@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { getProgramStats } from "@components/ProgramDetails";
+import getProgramStats from "@utils/helpers/getProgramStats";
 import LoadingPage from "@views/StatusPages/Loading";
 import ErrorPage from "@views/StatusPages/Error";
 import { ProgramContext, ProgramType } from "@contexts/Context";
@@ -25,7 +25,7 @@ export default function Program(): React.JSX.Element {
   return (
     <main className="bg-ddark">
       <ProgramContext.Provider value={programObj}>
-        <div className="min-w-screen flex h-screen flex-col items-stretch justify-stretch overflow-hidden bg-ddark">
+        <div className="min-w-screen flex h-screen flex-col items-stretch overflow-hidden bg-ddark">
           <Outlet />
         </div>
       </ProgramContext.Provider>
