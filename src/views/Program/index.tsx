@@ -25,7 +25,7 @@ export default function Program(): React.JSX.Element {
   return (
     <main className="bg-ddark">
       <ProgramContext.Provider value={programObj}>
-        <div className="min-w-screen flex h-screen flex-col items-stretch overflow-hidden bg-ddark">
+        <div className="min-w-screen flex h-screen flex-col items-stretch overflow-scroll bg-ddark">
           <Outlet />
         </div>
       </ProgramContext.Provider>

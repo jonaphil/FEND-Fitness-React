@@ -6,7 +6,8 @@ import Profile from "@views/HomeScreen/Profile";
 import HelloWorld from "@views/HelloWorld";
 import ProgramDetails from "@views/Program/ProgramDetails";
 import Program from "@views/Program";
-import ProgramStart from "@views/Program/ProgramStart";
+import Training from "@views/Training";
+import StartWorkout from "@views/Program/StartWorkout";
 import Workout from "@views/Program/Workout";
 import Exercise from "@views/Program/Workout/Exercise";
 import FinishWorkout from "@views/Program/FinishWorkout";
@@ -18,6 +19,7 @@ import getWorkoutDetails from "@adapters/queries/getWorkoutDetails";
 const router = createBrowserRouter([
   {
     path: "/",
+    //FIXME: Warum async?
     loader: async () => {
       return redirect("/home/dashboard/");
     },
@@ -45,32 +47,33 @@ const router = createBrowserRouter([
     path: "/hello-world",
     element: <HelloWorld percentage={40} />,
   },
-  //TODO ProgramDetails
-
-  //TODO currentWorkout
-
   {
     path: "/program/:programId/",
     element: <Program />,
     loader: ({ params }) => {
-      return getProgramDetails(params);
+      return getProgramDetails(params.programId);
     },
     children: [
       {
         path: "details/",
         element: <ProgramDetails />,
       },
+    ],
+  },
+  {
+    path: "/training/",
+    element: <Training />,
+    children: [
       {
         path: "start/",
-        element: <ProgramStart />,
-        //FIXME ProgramStart -> WorkoutStart
+        element: <StartWorkout />,
       },
       {
         path: "workout/:workoutId/",
         element: <Workout />,
         id: "workout",
         loader: ({ params }) => {
-          return getWorkoutDetails(params);
+          return getWorkoutDetails(params.workoutId);
         },
         children: [
           {

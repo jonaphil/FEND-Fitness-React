@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "@contexts/Context";
+import { useUserContext } from "@contexts/hooks";
 import Card from "@components/simple Components/Card";
 import WomanSVG from "@assets/icons/WomanYoga.svg?react";
 
 // import "../output.css";
 
 export default function Dashboard() {
-  const user = useContext(UserContext);
+  const { user } = useUserContext();
   return (
     <>
       <h1 className="self-start">Hi {user.name}!</h1>
@@ -28,7 +28,7 @@ export default function Dashboard() {
         <h3>Tag {user.current.day}</h3>
         <h2>{user.current.programName}</h2>
         <p className="pt-1 text-xs">
-          {user.current.exercise.duration} min - {user.current.exercise.focus}
+          {user.current.workout.duration} min - {user.current.workout.focus}
         </p>
       </Card>
     </>
