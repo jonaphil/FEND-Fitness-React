@@ -72,6 +72,26 @@ export interface Workout {
 
 export type ExerciseTheme = "default" | "light" | "mono";
 
+export interface UserType {
+  name: String;
+  image: String;
+  id: String;
+  current: {
+    day: Number;
+    programId: String;
+    programName: String;
+    length: Number; //FIXME: Has to be generated!
+    progress: Number; //FIXME: Has to be calculated!
+    workout: {
+      id: String;
+      duration: Number;
+      focus: String;
+    };
+  };
+  lastTimeTrained: String;
+  daysInARow: Number;
+}
+
 export const ProgramContext = createContext({});
 export const UserContext = createContext({});
 export const ExerciseTheme = createContext({});
