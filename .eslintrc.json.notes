@@ -1,0 +1,11 @@
+"alias": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "map": [
+          ["@/components", "./src/components"],
+          ["@/views", "./src/views"],
+          ["@/adapters", "./src/adapters"],
+          ["@/utils", "./src/utils"],
+          ["@/assets", "./src/assets"],
+          ["@/contexts", "./src/contexts"]
+        ]
+      }
