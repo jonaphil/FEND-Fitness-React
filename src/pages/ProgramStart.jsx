@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Link } from "../../node_modules/react-router-dom/dist/index";
+import { colors } from "../styles/variables";
 import Button from "../components/Button";
 import { ProgramContext } from "../Context";
 import ButtonGoBack from "../media/icons/ButtonGoBack.svg?react";
@@ -29,7 +30,7 @@ function Header(_a) {
       <div className="w-5"></div>
       <p className="justify-self-center text-2xs">{text}</p>
       <Link to={"../details"}>
-        <ButtonGoBack />
+        <ButtonGoBack color={"".concat(colors.dlight)}/>
       </Link>
     </div>);
 }
