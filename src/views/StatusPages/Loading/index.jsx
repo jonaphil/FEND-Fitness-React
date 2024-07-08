@@ -1,7 +1,10 @@
+import Spinner from "@components/simple Components/Suspense/Spinner";
+
 export default function LoadingPage() {
   return (
-    <h1 className="flex h-screen w-screen items-center justify-center">
+    <h1 className="flex h-screen w-screen flex-col items-center justify-center">
       Loading...
+      <Spinner />
     </h1>
   );
 }
