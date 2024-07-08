@@ -25,7 +25,6 @@ export default function StatusList({
         <div className="translate-x-1/2">
           <div className="top-12 mt-8 flex w-fit -translate-x-4 flex-row items-center justify-center self-start overflow-hidden">
             {exerciseList.map((w, i: number) => {
-              console.log(w.exercise.id);
               return (
                 <>
                   {i !== 0 && (

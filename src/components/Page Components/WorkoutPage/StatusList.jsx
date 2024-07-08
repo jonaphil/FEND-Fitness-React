@@ -11,7 +11,6 @@ export default function StatusList(_a) {
         <div className="translate-x-1/2">
           <div className="top-12 mt-8 flex w-fit -translate-x-4 flex-row items-center justify-center self-start overflow-hidden">
             {exerciseList.map(function (w, i) {
-            console.log(w.exercise.id);
             return (<>
                   {i !== 0 && (<Connection reactKey={"Connection-".concat(w.exercise.id)} color={lineColor}/>)}
                   <div key={"dot-".concat(w.exercise.id)} className={"box-border h-8 w-8 rounded-full transition-all duration-1000 ".concat(i > currentExercise && "border-4 border-".concat(lineColor))}>

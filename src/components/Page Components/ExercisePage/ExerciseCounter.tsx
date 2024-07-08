@@ -12,7 +12,6 @@ export default function ExerciseCounter({
   id: String;
   nextStep: () => void;
 }): React.JSX.Element {
-  console.log(type);
   if (type === "reps") {
     return <CounterReps reps={count} key={`${id}`} />;
   } else if (type === "duration") {

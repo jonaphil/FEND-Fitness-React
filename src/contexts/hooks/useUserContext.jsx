@@ -5,11 +5,9 @@ import { UserContext } from "@contexts/Context";
 export default function useUserContext() {
   const [user, setUser] = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(user);
 
   const setUserProgram = (program) => {
     const { id, name, duration, workoutsWithDay } = program;
-    console.log(program);
     const { workout } = workoutsWithDay[0];
     setUser({
       ...user,
