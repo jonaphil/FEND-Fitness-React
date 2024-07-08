@@ -15,9 +15,9 @@ export default function DescriptionCard(_a) {
             return true;
         });
     };
-    return (<div className={"relative bottom-0 flex h-3/4screen w-full shrink-0 justify-between rounded-t-3xl bg-dmedium transition-transform duration-500 ".concat(active
-            ? "-translate-y-3/4screen flex-col items-center p-9 pb-28 pt-16 "
-            : "-translate-y-14 flex-row items-start px-6 py-4")}>
+    return (<div className={"relative bottom-0 flex h-3/4screen w-full shrink-0 rounded-t-3xl bg-dmedium transition-transform duration-500 ".concat(active
+            ? "-translate-y-full flex-col items-center justify-start p-9 pb-28 pt-12 "
+            : "-translate-y-14 flex-row items-start justify-between px-6 py-4")}>
       {active ? (<div className="flex w-full flex-col items-stretch gap-6 self-stretch opacity-100 transition-opacity duration-700">
           <h1 className="">{name}</h1>
           <p>{description}</p>
