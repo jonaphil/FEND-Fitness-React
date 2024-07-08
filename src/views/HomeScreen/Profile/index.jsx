@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "@contexts/Context";
+import { useUserContext } from "@contexts/hooks";
 import Card from "@components/simple Components/Card";
 import ProgressCircle from "@components/simple Components/ProgressCircle/ProgressCircle";
 
 export default function Profile() {
-  const user = useContext(UserContext);
+  const { user } = useUserContext();
   return (
     <>
       <h2 className="self-start">{user.name}</h2>
