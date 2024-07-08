@@ -136,7 +136,10 @@ var router = createBrowserRouter([
                         id: "workout",
                         loader: function (_a) {
                             var params = _a.params;
-                            return getWorkoutDetails(params.workoutId);
+                            var promise = getWorkoutDetails(params.workoutId);
+                            return defer({
+                                promise: promise,
+                            });
                         },
                         children: [
                             {

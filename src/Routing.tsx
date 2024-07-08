@@ -93,7 +93,10 @@ const router = createBrowserRouter([
             element: <Workout />,
             id: "workout",
             loader: ({ params }) => {
-              return getWorkoutDetails(params.workoutId);
+              const promise = getWorkoutDetails(params.workoutId);
+              return defer({
+                promise,
+              });
             },
             children: [
               {
