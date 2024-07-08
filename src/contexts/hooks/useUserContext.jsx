@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@apollo/client";
 import { UserContext } from "@contexts/Context";
-import PROGRAM_QUERY from "@adapters/graphQL/queries/getProgramDetails";
 
 export default function useUserContext() {
   const [user, setUser] = useContext(UserContext);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HomeScreen from "@views/HomeScreen";
-import Workout from "@views/Program/Workout";
+import Workout from "@views/Training/Workout";
 
 export default function HelloWorld() {
   const [state, setState] = useState(0);

@@ -1,4 +1,4 @@
-import getEntryList from "@adapters/queries/getEntryList";
+import getEntryList from "@adapters/apolloClient/queries/getEntryList";
 import { LoadingButton } from "@components/simple Components/StatusElements/Loading";
 import {
   CreateRandomExerciseButton,
