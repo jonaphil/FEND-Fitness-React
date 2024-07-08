@@ -3,7 +3,6 @@ import Card from "@components/simple Components/Card";
 
 export default function CardList({ listArray }) {
   const bgColorArr = ["gradient-red", "gradient-green", "gradient-blue"];
-
   return (
     <ul className="flex w-full flex-col items-center gap-5">
       {listArray.map((item, index) => {

@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter, redirect, defer } from "react-router-dom";
 import ErrorPage from "@views/StatusPages/Error";
 import RouterRoot from "@views/RouterRoot/index";
 import HomeScreen from "@views/HomeScreen";
@@ -13,6 +13,7 @@ import StartWorkout from "@views/Training/StartWorkout";
 import Workout from "@views/Training/Workout";
 import Exercise from "@views/Training/Workout/Exercise";
 import FinishWorkout from "@views/Training/FinishWorkout";
+import LoadingPage from "@views/StatusPages/Loading";
 import getProgramsList from "@adapters/apolloClient/queries/getProgramsList";
 import getProgramDetails from "@adapters/apolloClient/queries/getProgramDetails";
 import getWorkoutDetails from "@adapters/apolloClient/queries/getWorkoutDetails";
@@ -45,7 +46,12 @@ const router = createBrowserRouter([
             path: "programs/",
             element: <ProgramsList />,
             errorElement: <ErrorPage />,
-            loader: getProgramsList,
+            loader: async () => {
+              const programsPromise = getProgramsList();
+              return defer({
+                promise: programsPromise,
+              });
+            },
           },
           {
             path: "profile/",
@@ -56,13 +62,16 @@ const router = createBrowserRouter([
       },
       {
         path: "hello-world",
-        element: <HelloWorld percentage={40} />,
+        element: <LoadingPage />,
       },
       {
         path: "program/:programId/",
         element: <Program />,
-        loader: ({ params }) => {
-          return getProgramDetails(params.programId);
+        loader: async ({ params }) => {
+          const promise = getProgramDetails(params.programId);
+          return defer({
+            promise,
+          });
         },
         children: [
           {
