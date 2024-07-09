@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   ddark: "#202430",
   dmedium: "#3A4151",
   dlight: "#FBFBFB",
@@ -8,3 +8,5 @@ export const colors = {
   mobility: "#ffbb00",
   weightTraining: "#bb2211",
 };
+
+export default colors;

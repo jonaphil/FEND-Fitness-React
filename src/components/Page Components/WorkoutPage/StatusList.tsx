@@ -26,21 +26,21 @@ export default function StatusList({
           <div className="top-12 mt-8 flex w-fit -translate-x-4 flex-row items-center justify-center self-start overflow-hidden">
             {exerciseList.map((w, i: number) => {
               return (
-                <>
+                <div key={w.exercise.id} className="flex flex-row items-center">
                   {i !== 0 && (
                     <Connection
-                      reactKey={`Connection-${w.exercise.id}`}
+                      key={`Connection-${w.exercise.id}-${i}`}
                       color={lineColor}
                     />
                   )}
                   <div
-                    key={`dot-${w.exercise.id}`}
+                    key={`dot-${w.exercise.id}-${i}`}
                     className={`box-border h-8 w-8 rounded-full transition-all duration-1000 ${
                       i > currentExercise && `border-4 border-${lineColor}`
                     }`}
                   >
                     <div
-                      key={`filling-${w.exercise.id}`}
+                      key={`filling-${w.exercise.id}-${i}`}
                       className={`absolute rounded-full transition-opacity duration-1000 ${
                         i <= currentExercise
                           ? `h-8 w-8 bg-${fillingColor} opacity-100`
@@ -48,7 +48,7 @@ export default function StatusList({
                       }`}
                     />
                   </div>
-                </>
+                </div>
               );
             })}
             {isEven(length) && <div className="w-20" />}
@@ -60,16 +60,11 @@ export default function StatusList({
 }
 
 function Connection({
-  reactKey,
   color = "dmedium",
 }: {
-  reactKey: string;
   color: string;
 }): React.JSX.Element {
   return (
-    <div
-      key={`${reactKey}`}
-      className={`h-0 w-16 border-t-4 border-dotted border-${color}`}
-    ></div>
+    <div className={`h-0 w-16 border-t-4 border-dotted border-${color}`}></div>
   );
 }

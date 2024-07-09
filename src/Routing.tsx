@@ -5,7 +5,7 @@ import HomeScreen from "@views/HomeScreen";
 import Dashboard from "@views/HomeScreen/Dashboard";
 import ProgramsList from "@views/HomeScreen/ProgramsList";
 import Profile from "@views/HomeScreen/Profile";
-import HelloWorld from "@views/HelloWorld";
+import CreateEntries from "@views/HomeScreen/CreateEntries";
 import Program from "@views/Program";
 import ProgramDetails from "@views/Program/ProgramDetails";
 import Training from "@views/Training";
@@ -22,14 +22,13 @@ const router = createBrowserRouter([
   //FIXME: more elegant way, 2 * "/" ??
   {
     path: "/",
+    //FIXME: Warum async?
     loader: async () => {
       return redirect("/home/dashboard/");
     },
   },
   {
     path: "/",
-    //FIXME: Warum async?
-
     element: <RouterRoot />,
     errorElement: <ErrorPage />,
     children: [
@@ -57,6 +56,10 @@ const router = createBrowserRouter([
             path: "profile/",
             element: <Profile />,
             errorElement: <ErrorPage />,
+          },
+          {
+            path: "generator/",
+            element: <CreateEntries />,
           },
         ],
       },

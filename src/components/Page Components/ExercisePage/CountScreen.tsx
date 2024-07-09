@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { colors } from "@utils/styles/variables";
+import colors from "@utils/styles/variables";
 import ButtonLeft from "@assets/icons/ButtonLeft.svg?react";
 import ButtonRight from "@assets/icons/ButtonRight.svg?react";
 
@@ -29,13 +29,11 @@ export default function CountScreen({
         {children}
       </div>
       {currentExercise + 1 < numExercises ? (
-        <div className="w-5">
-          <button onClick={endPause}>
-            <Link to={`../${currentExercise + 1}`}>
-              <ButtonRight color={colors.dlight} />
-            </Link>
-          </button>
-        </div>
+        <button onClick={endPause}>
+          <Link to={`../${currentExercise + 1}`}>
+            <ButtonRight color={colors.dlight} />
+          </Link>
+        </button>
       ) : (
         <div className="w-5" />
       )}

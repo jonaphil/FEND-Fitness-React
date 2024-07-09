@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { colors } from "@utils/styles/variables";
+import colors from "@utils/styles/variables";
 import Home from "@assets/icons/HomeButton.svg?react";
 import Dumbbell from "@assets/icons/HandleWeightButton.svg?react";
 import Profile from "@assets/icons/ProfileButton.svg?react";

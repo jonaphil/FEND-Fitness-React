@@ -1,5 +1,5 @@
 import SvgProgressCircle from "./SvgComponent/SvgProgressCircle";
-import { colors } from "@utils/styles/variables";
+import colors from "@utils/styles/variables";
 
 export default function ProgressCircle({
   progress,

@@ -4,9 +4,12 @@ import {
   CreateRandomExerciseButton,
   CreateRandomWorkoutButton,
   CreateRandomProgramButton,
-} from "./createRandomEntries";
+} from "@utils/helpers/createRandomEntries";
 
 export default function CreateEntries() {
+  //TODO: Add Suspend!
+  //TODO: Add automatic publishing
+  const { exerciseList, programsList } = useUpdatedEntries;
   const entriesFetch = getEntryList();
 
   return (

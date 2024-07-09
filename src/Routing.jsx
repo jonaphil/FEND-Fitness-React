@@ -41,6 +41,7 @@ import HomeScreen from "@views/HomeScreen";
 import Dashboard from "@views/HomeScreen/Dashboard";
 import ProgramsList from "@views/HomeScreen/ProgramsList";
 import Profile from "@views/HomeScreen/Profile";
+import CreateEntries from "@views/HomeScreen/CreateEntries";
 import Program from "@views/Program";
 import ProgramDetails from "@views/Program/ProgramDetails";
 import Training from "@views/Training";
@@ -56,6 +57,7 @@ var router = createBrowserRouter([
     //FIXME: more elegant way, 2 * "/" ??
     {
         path: "/",
+        //FIXME: Warum async?
         loader: function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, redirect("/home/dashboard/")];
@@ -64,7 +66,6 @@ var router = createBrowserRouter([
     },
     {
         path: "/",
-        //FIXME: Warum async?
         element: <RouterRoot />,
         errorElement: <ErrorPage />,
         children: [
@@ -95,6 +96,10 @@ var router = createBrowserRouter([
                         path: "profile/",
                         element: <Profile />,
                         errorElement: <ErrorPage />,
+                    },
+                    {
+                        path: "generator/",
+                        element: <CreateEntries />,
                     },
                 ],
             },

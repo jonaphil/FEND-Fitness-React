@@ -23,11 +23,9 @@ export default function Exercise(_a) {
         }
     };
     var doPause = function () {
-        setExerciseTheme("light");
         setPause(true);
     };
     var endPause = function () {
-        setExerciseTheme("default");
         setPause(false);
     };
     if (pause) {

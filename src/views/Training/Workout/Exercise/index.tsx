@@ -42,12 +42,10 @@ export default function Exercise({}): React.JSX.Element {
   };
 
   const doPause = () => {
-    setExerciseTheme("light");
     setPause(true);
   };
 
   const endPause = () => {
-    setExerciseTheme("default");
     setPause(false);
   };
 

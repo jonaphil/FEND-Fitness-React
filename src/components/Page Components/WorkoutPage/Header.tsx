@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ExerciseTheme } from "@contexts/Context";
-import { colors } from "@utils/styles/variables";
+import colors from "@utils/styles/variables";
 import XClose from "@assets/icons/X-close.svg?react";
 
 export default function Header({}): React.JSX.Element {

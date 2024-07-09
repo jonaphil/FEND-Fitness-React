@@ -13,9 +13,6 @@ export default function CounterDuration({
   const { exerciseTheme } = useContext(ExerciseTheme);
 
   const [timeLeft, setTimeLeft]: [number, (n) => void] = useState(duration);
-  if (timeLeft === 0) {
-    nextStep();
-  }
 
   useEffect(() => {
     const reduceTime: () => void = () => {
@@ -23,10 +20,16 @@ export default function CounterDuration({
         return prevTimeLeft >= 0.1 ? prevTimeLeft - 0.1 : 0;
       });
     };
+    //set the interval for rendering.
     let interval = setInterval(reduceTime, 100);
+    //start another Timeout for seperate Triggering of nextStep. To avoid an error of type Cannot update a component while rendering a different component.
+    let waitForNextStep = setTimeout(nextStep, duration * 1000);
+
     return () => {
       clearInterval(interval);
       interval = null;
+      clearTimeout(waitForNextStep);
+      waitForNextStep = null;
     };
   }, []);
 
