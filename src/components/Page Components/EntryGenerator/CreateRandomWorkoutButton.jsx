@@ -1,14 +1,23 @@
 import { useMutation } from "@apollo/client";
 import getRandomWorkoutMutation from "@utils/helpers/graphQLGenerators";
 
-export default function CreateRandomWorkoutButton({ exerciseList }) {
+export default function CreateRandomWorkoutButton({
+  exerciseList,
+  addWorkoutToCache,
+}) {
   const ADD_RANDOM_WORKOUT = getRandomWorkoutMutation(exerciseList);
-  const [addWorkout, { data, error }] = useMutation(ADD_RANDOM_WORKOUT);
+  const [addWorkoutToServer, { data, error }] = useMutation(ADD_RANDOM_WORKOUT);
 
-  if (error) console.log(`Error: ${error.message}`);
-  if (data) console.log(data);
+  if (!error) {
+    console.log("Successfully added:");
+    console.log(data);
+    addWorkoutToCache(data);
+  } else {
+    console.log(`Error: ${error.message}`);
+  }
+
   return (
-    <button onClick={addWorkout} className="rounded-md bg-dmedium p-4">
+    <button onClick={addWorkoutToServer} className="rounded-md bg-dmedium p-4">
       Add random Workout
     </button>
   );

@@ -9,12 +9,22 @@ import {
 export default function CreateEntries() {
   //TODO: Add Suspend!
   //TODO: Add automatic publishing
-  const { exerciseList, programsList } = useUpdatedEntries;
+  //TODO: Automatic addition of generated material to Cache, without refetching!
+
+  const { exerciseList, programsList, workoutList, assetList } =
+    useUpdatedEntries;
   const entriesFetch = getEntryList();
 
+  const { exercises, workouts, assets } = entriesFetch.data;
+  const addExerciseToCache = (newExercise) => {
+    exercises.push(newExercise);
+  };
+  const addWorkoutToCache = (newWorkout) => {
+    workouts.push(newWorkout);
+  };
   return (
     <>
-      <CreateRandomExerciseButton />
+      <CreateRandomExerciseButton addExerciseToCache={addExerciseToCache} />
       {entriesFetch.loading ? (
         <LoadingButton />
       ) : entriesFetch.error ? (
@@ -22,11 +32,12 @@ export default function CreateEntries() {
       ) : (
         <>
           <CreateRandomWorkoutButton
-            exerciseList={entriesFetch.data.exercises}
+            addWorkoutToCache={addWorkoutToCache}
+            exerciseList={exercises}
           />
           <CreateRandomProgramButton
-            workoutList={entriesFetch.data.workouts}
-            assetList={entriesFetch.data.assets}
+            workoutList={workouts}
+            assetList={assets}
           />
         </>
       )}
