@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import isEven from "@utils/helpers/generalFunctions";
+import isEven from "@utils/math/generalFunctions";
 import { ExerciseTheme, } from "@contexts/Context";
 export default function StatusList(_a) {
     var exerciseList = _a.exerciseList, currentExercise = _a.currentExercise;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import colors from "@utils/styles/variables";
+import colors from "@utils/styles/colors";
 import ButtonLeft from "@assets/icons/ButtonLeft.svg?react";
 import ButtonRight from "@assets/icons/ButtonRight.svg?react";
 

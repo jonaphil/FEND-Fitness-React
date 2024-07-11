@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "@contexts/hooks";
-import colors from "@utils/styles/variables";
+import colors from "@utils/styles/colors";
+import germanTranslation from "@utils/lang/translations";
 import Button from "@components/simple Components/Button";
 import ButtonGoBack from "@assets/icons/ButtonGoBack.svg?react";
-import germanTranslation from "@utils/helpers/translations";
 export default function StartWorkout() {
     //FIXME Use UserContext instead of ProgramContext!
     var user = useUserContext().user;

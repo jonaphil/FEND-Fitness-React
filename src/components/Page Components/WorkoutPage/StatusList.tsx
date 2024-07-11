@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import isEven from "@utils/helpers/generalFunctions";
+import isEven from "@utils/math/generalFunctions";
 import {
   ExerciseTheme,
   ExerciseWithDuration,

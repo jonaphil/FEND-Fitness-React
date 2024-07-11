@@ -1,4 +1,4 @@
-import germanTranslation from "@utils/helpers/translations";
+import germanTranslation from "@utils/lang/translations";
 
 export default function WorkoutCard({ workoutOnDay }) {
   const { duration, category } = workoutOnDay.workout;
