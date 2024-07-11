@@ -17,6 +17,7 @@ import LoadingPage from "@views/StatusPages/Loading";
 import getProgramsList from "@adapters/apolloClient/queries/getProgramsList";
 import getProgramDetails from "@adapters/apolloClient/queries/getProgramDetails";
 import getWorkoutDetails from "@adapters/apolloClient/queries/getWorkoutDetails";
+import getEntryList from "@adapters/apolloClient/queries/getEntryList";
 
 const router = createBrowserRouter([
   //FIXME: more elegant way, 2 * "/" ??
@@ -60,6 +61,12 @@ const router = createBrowserRouter([
           {
             path: "generator/",
             element: <CreateEntries />,
+            loader: async () => {
+              const entriesPromise = getEntryList();
+              return defer({
+                promise: entriesPromise,
+              });
+            },
           },
         ],
       },
