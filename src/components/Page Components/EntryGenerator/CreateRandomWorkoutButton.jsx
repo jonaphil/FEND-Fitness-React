@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import getRandomWorkoutMutation from "@utils/helpers/graphQLGenerators";
+import getRandomWorkoutMutation from "@utils/helpers/graphQLGenerators/getRandomWorkoutMutation";
+import { PUBLISH_WORKOUT } from "@adapters/graphQL/mutation/publish";
 
 export default function CreateRandomWorkoutButton({
   exerciseList,
@@ -7,12 +9,28 @@ export default function CreateRandomWorkoutButton({
 }) {
   const ADD_RANDOM_WORKOUT = getRandomWorkoutMutation(exerciseList);
   const [addWorkoutToServer, { data, error }] = useMutation(ADD_RANDOM_WORKOUT);
+  const [publishWorkout, publishResponse] = useMutation(PUBLISH_WORKOUT);
 
-  if (!error) {
-    console.log("Successfully added:");
-    console.log(data);
-    addWorkoutToCache(data);
-  } else {
+  // FIXME: Error with second click on same button
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      publishWorkout({
+        variables: {
+          ID: data.createWorkout.id,
+        },
+      });
+    }
+  }, [data]);
+  if (publishResponse?.data) {
+    console.log(publishResponse.data);
+    addWorkoutToCache(data.createWorkout);
+  }
+
+  if (publishResponse?.error) {
+    console.log(`Error: ${publishResponse.error.message}`);
+  }
+  if (error) {
     console.log(`Error: ${error.message}`);
   }
 
