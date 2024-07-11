@@ -11,7 +11,7 @@ export default function getRandomProgramMutation(workoutList, assetList) {
   mutation AddProgram {
     createProgram(
       data: {
-        name: "Program ${getRandom(names)}",
+        name: "Programey ${getRandom(names)}",
         image: { connect:
           {id: "${getRandom(assetList).id}"}
         },
@@ -22,6 +22,7 @@ export default function getRandomProgramMutation(workoutList, assetList) {
         focus: ${focus}
       }
     ){
+      id
       name
       image {
         id
