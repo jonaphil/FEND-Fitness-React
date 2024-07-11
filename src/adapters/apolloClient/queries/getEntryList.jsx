@@ -1,13 +1,9 @@
-import { useQuery } from "@apollo/client";
+import { apolloClient } from "@contexts/Context";
 import GET_ENTRIES from "@adapters/graphQL/queries/GET_ENTRIES";
 
 // FIXME function has to be async??
 export default function getEntryList() {
-  const { loading, error, data } = useQuery(GET_ENTRIES);
+  const result = apolloClient.query({ query: GET_ENTRIES });
 
-  if (error) {
-    console.log(error.message);
-  }
-
-  return { loading, data, error };
+  return result;
 }
