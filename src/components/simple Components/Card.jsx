@@ -5,13 +5,14 @@ export default function Card({
   className = "",
   children,
   shadow,
+  items = "start",
 }) {
   const layout = {
     h: "h-53.75",
     w: "w-full",
     p: "p-12.5",
     shadow: "shadow-m",
-    items: "items-start",
+    items,
     gap: "0",
   };
 
@@ -42,7 +43,7 @@ export default function Card({
   shadow && (layout.shadow = `shadow-${shadow}`);
   return (
     <div
-      className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col ${layout.items} gap-${layout.gap} rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}
+      className={`${layout.h} ${layout.w} bg-${bgColor} flex flex-col items-${layout.items} gap-${layout.gap} rounded-2.5xl ${layout.p} justify-${justify} ${className} ${layout.shadow} `}
     >
       {children}
     </div>
