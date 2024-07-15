@@ -1,6 +1,5 @@
 import { Suspense, useRef } from "react";
 import { Await, useLoaderData } from "react-router-dom";
-import { useEntriesCache } from "@contexts/hooks"; // FIXME Remove also file if not needed.
 import Card from "@components/simple Components/Card";
 import Spinner from "@components/simple Components/Suspense/Spinner";
 import ErrorElement from "@components/simple Components/ErrorElement";
@@ -50,7 +49,7 @@ function GeneratorButtonsResolved({ promise }) {
     console.log(programs);
   };
 
-  // FIXME Cache is not working!
+  // TODO Implement some kind of cache or Refetching
 
   return (
     <>

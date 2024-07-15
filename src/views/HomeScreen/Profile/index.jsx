@@ -36,6 +36,10 @@ export default function Profile() {
           </div>
         </Card>
       </div>
+      {/* FIXME: Remove for Public Version. */}
+      <Link className={"mt-4 rounded-lg border px-2"} to={"/home/generator"}>
+        <button>Zufallsgenerator für Einträge</button>
+      </Link>
     </>
   );
 }
