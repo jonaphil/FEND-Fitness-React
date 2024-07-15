@@ -12,3 +12,14 @@ export function generateRandomList(length) {
   shuffleArray(list);
   return list;
 }
+
+export function getRandomString(length) {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const charactersLength = characters.length;
+  let result = "";
+
+  for (let i = 0; i <= length; i += 1) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
