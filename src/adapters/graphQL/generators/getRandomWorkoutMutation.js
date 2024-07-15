@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { names, focusCategories } from "@utils/random/content";
 import { getRandom } from "@utils/random/array";
+import { getRandomString } from "@utils/random/generator";
 import generateWorkoutExercisesList from "@utils/helpers/generateWorkoutExercisesList";
 
 export default function getRandomWorkoutMutation(exerciseList) {
@@ -8,7 +9,7 @@ export default function getRandomWorkoutMutation(exerciseList) {
     generateWorkoutExercisesList(exerciseList);
 
   const ADD_RANDOM_WORKOUT = gql`
-    mutation AddWorkout {
+    mutation AddWorkout${getRandomString(5)} {
       createWorkout(
         data: {
           name: "Workoutey ${getRandom(names)}", 
