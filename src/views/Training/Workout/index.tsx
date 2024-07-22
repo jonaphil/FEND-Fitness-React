@@ -1,6 +1,7 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Outlet, useParams, useLoaderData, Await } from "react-router-dom";
-import { ExerciseTheme } from "@contexts/Context";
+import { useReadQuery } from "@apollo/client";
+import { ExerciseTheme, Workout } from "@contexts/Context";
 import Spinner from "@components/simple Components/Suspense/Spinner";
 import StatusList from "@components/Page Components/WorkoutPage/StatusList";
 import DescriptionCard from "@components/Page Components/WorkoutPage/DescriptionCard";
@@ -9,62 +10,47 @@ import ErrorElement from "@components/simple Components/ErrorElement";
 
 export default function Workout({}: {}): React.JSX.Element {
   const loaderData = useLoaderData();
+  const { data } = useReadQuery(loaderData);
+  console.log(data);
 
   const [exerciseTheme, setExerciseTheme] = useState("default");
   const exerciseIndex: number = parseInt(useParams().exerciseIndex, 10);
   const [currentExercise, setCurrentExercise] = useState(exerciseIndex);
-  if (currentExercise !== exerciseIndex) {
-    setCurrentExercise(exerciseIndex);
-  }
   const [pause, setPause] = useState(false) as [
     boolean,
     (arg0: boolean) => void
   ];
+  if (currentExercise !== exerciseIndex) {
+    setCurrentExercise(exerciseIndex);
+  }
   if (pause === true && exerciseTheme === "default") {
     setExerciseTheme("light");
   } else if (pause === false && exerciseTheme === "light") {
     setExerciseTheme("default");
   }
-  // const backgroundColor = exerciseTheme === "light" ? "dmedium" : "ddark";
-  // const contextObject = {
-  //   currentExerciseState: { currentExercise, setCurrentExercise },
-  //   // exerciseThemeState: { exerciseTheme, setExerciseTheme },
-  //   pauseState: { pause, setPause },
-  // };
+
   return (
     <ExerciseTheme.Provider value={{ exerciseTheme, setExerciseTheme }}>
-      <Suspense
-        fallback={
-          <div className="flex h-full w-full flex-col items-center justify-center">
-            <Spinner />
-          </div>
-        }
+      <WorkoutResolved
+        data={data}
+        currentExercise={currentExercise}
+        pause={pause}
       >
-        <Await resolve={loaderData.promise} errorElement={<ErrorElement />}>
-          {(promise) => (
-            <WorkoutResolved
-              promise={promise}
-              currentExercise={currentExercise}
-              pause={pause}
-            >
-              <Outlet
-                context={{
-                  currentExercise,
-                  setCurrentExercise,
-                  numExercises: promise.data.workouts[0].exercises.length,
-                  exercise: promise.data.workouts[0].exercises[exerciseIndex],
-                  pauseState: [pause, setPause],
-                }}
-              />
-            </WorkoutResolved>
-          )}
-        </Await>
-      </Suspense>
+        <Outlet
+          context={{
+            currentExercise,
+            setCurrentExercise,
+            numExercises: data?.workouts[0].exercises.length,
+            exercise: data?.workouts[0].exercises[exerciseIndex],
+            pauseState: [pause, setPause],
+          }}
+        />
+      </WorkoutResolved>
     </ExerciseTheme.Provider>
   );
 }
 
-function WorkoutResolved({ promise, currentExercise, pause, children }) {
+function WorkoutResolved({ data, currentExercise, pause, children }) {
   return (
     <>
       <div
@@ -75,7 +61,7 @@ function WorkoutResolved({ promise, currentExercise, pause, children }) {
         <Header />
         <div className="mt-9 w-full">
           <StatusList
-            exerciseList={promise.data.workouts[0].exercises}
+            exerciseList={data.workouts[0].exercises}
             currentExercise={currentExercise}
           />
         </div>
@@ -83,12 +69,9 @@ function WorkoutResolved({ promise, currentExercise, pause, children }) {
       </div>
       {!pause && (
         <DescriptionCard
-          name={
-            promise.data.workouts[0].exercises[currentExercise].exercise.name
-          }
+          name={data.workouts[0].exercises[currentExercise].exercise.name}
           description={
-            promise.data.workouts[0].exercises[currentExercise].exercise
-              .description
+            data.workouts[0].exercises[currentExercise].exercise.description
           }
         />
       )}
