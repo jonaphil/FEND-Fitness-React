@@ -4,6 +4,7 @@ import { UserContext } from "@contexts/Context";
 
 export default function useUserContext() {
   const [user, setUser] = useContext(UserContext);
+  const [programIsFinished, setProgramIsFinished] = useContext(false);
   const navigate = useNavigate();
 
   const setUserProgram = (program) => {
@@ -28,5 +29,34 @@ export default function useUserContext() {
     navigate("/training/start/");
   };
 
-  return { user, setUserProgram };
+  const voteWorkout = (vote) => {
+    // TODO Post Vote to Hasura
+    console.log(`You voted ${vote} for this Workout!`);
+  };
+  const voteProgram = (vote) => {
+    // TODO Post Vote to Hasura
+    console.log(`You voted ${vote} for this Program!`);
+  };
+
+  const reviewWorkout = (vote) => {
+    voteWorkout(vote);
+    if (user.current.progress === user.current.length) {
+      setProgramIsFinished(true);
+    }
+    // TODO
+    // Check last day trained => if yesterday: {streak+1} if today: {} else: {streak = 1}
+    // Update: Last time trained
+    // Update: current.workout, progress
+  };
+  const reviewProgram = (vote) => {
+    voteProgram(vote);
+  };
+
+  return {
+    user,
+    programIsFinished,
+    setUserProgram,
+    reviewWorkout,
+    reviewProgram,
+  };
 }
