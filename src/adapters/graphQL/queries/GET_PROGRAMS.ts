@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const GET_PROGRAMS = gql`
-  query GetPrograms {
+  query HygraphGetPrograms {
     programs {
       id
       name

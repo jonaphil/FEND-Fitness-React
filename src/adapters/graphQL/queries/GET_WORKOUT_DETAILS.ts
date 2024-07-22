@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const GET_WORKOUT_DETAILS = gql`
-  query GetWorkoutDetails($workoutId: ID!) {
+  query HygraphGetWorkoutDetails($workoutId: ID!) {
     workouts(where: { id: $workoutId }) {
       id
       name

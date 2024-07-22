@@ -8,7 +8,7 @@ export default function getRandomProgramMutation(workoutList, assetList) {
   const duration = randomInt(15, 4);
   const [workoutsString, focus] = generateProgramWorkouts(workoutList);
   const ADD_RANDOM_PROGRAM = gql`
-  mutation AddProgram${getRandomString(5)} {
+  mutation HygraphAddProgram${getRandomString(5)} {
     createProgram(
       data: {
         name: "Programey ${getRandom(names)}",

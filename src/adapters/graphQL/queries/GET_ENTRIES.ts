@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const GET_ENTRIES = gql`
-  query GetIds {
+  query HygraphGetIds {
     exercises {
       id
     }
