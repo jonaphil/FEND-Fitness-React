@@ -1,5 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Await, useLoaderData } from "react-router-dom";
+import { useReadQuery } from "@apollo/client";
 import Card from "@components/simple Components/Card";
 import Spinner from "@components/simple Components/Suspense/Spinner";
 import ErrorElement from "@components/simple Components/ErrorElement";
@@ -29,7 +30,9 @@ export default function CreateEntries() {
         }
       >
         <Await resolve={promise} errorElement={<ErrorElement />}>
-          {(fetched) => <GeneratorButtonsResolved promise={fetched} />}
+          {(fetched) => {
+            return <GeneratorButtonsResolved promise={fetched} />;
+          }}
         </Await>
       </Suspense>
     </>
@@ -38,11 +41,14 @@ export default function CreateEntries() {
 
 function GeneratorButtonsResolved({ promise }) {
   console.log(promise);
-  const { assets } = promise.data;
+  const { data } = useReadQuery(promise);
+  const { assets } = data;
 
-  const exercises = useRef([...promise.data.exercises]);
-  const workouts = useRef([...promise.data.workouts]);
-  const programs = useRef([...promise.data.programs]);
+  // TODO Update/Refetch data after successfull addition
+
+  const exercises = useRef([...data.exercises]);
+  const workouts = useRef([...data.workouts]);
+  const programs = useRef([...data.programs]);
   const showObject = () => {
     console.log(exercises);
     console.log(workouts);
