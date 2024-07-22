@@ -84,11 +84,11 @@ var router = createBrowserRouter([
                         element: <ProgramsList />,
                         errorElement: <ErrorPage />,
                         loader: function () { return __awaiter(void 0, void 0, void 0, function () {
-                            var programsPromise;
+                            var queryRefPromise;
                             return __generator(this, function (_a) {
-                                programsPromise = getProgramsList();
+                                queryRefPromise = getProgramsList();
                                 return [2 /*return*/, defer({
-                                        promise: programsPromise,
+                                        queryRefPromise: queryRefPromise,
                                     })];
                             });
                         }); },
@@ -102,11 +102,11 @@ var router = createBrowserRouter([
                         path: "generator/",
                         element: <CreateEntries />,
                         loader: function () { return __awaiter(void 0, void 0, void 0, function () {
-                            var entriesPromise;
+                            var queryRefPromise;
                             return __generator(this, function (_a) {
-                                entriesPromise = getEntryList();
+                                queryRefPromise = getEntryList();
                                 return [2 /*return*/, defer({
-                                        promise: entriesPromise,
+                                        queryRefPromise: queryRefPromise,
                                     })];
                             });
                         }); },
@@ -121,12 +121,12 @@ var router = createBrowserRouter([
                 path: "program/:programId/",
                 element: <Program />,
                 loader: function (_a) { return __awaiter(void 0, [_a], void 0, function (_b) {
-                    var promise;
+                    var queryRefPromise;
                     var params = _b.params;
                     return __generator(this, function (_c) {
-                        promise = getProgramDetails(params.programId);
+                        queryRefPromise = getProgramDetails(params.programId);
                         return [2 /*return*/, defer({
-                                promise: promise,
+                                queryRefPromise: queryRefPromise,
                             })];
                     });
                 }); },
@@ -151,10 +151,8 @@ var router = createBrowserRouter([
                         id: "workout",
                         loader: function (_a) {
                             var params = _a.params;
-                            var promise = getWorkoutDetails(params.workoutId);
-                            return defer({
-                                promise: promise,
-                            });
+                            var queryRef = getWorkoutDetails(params.workoutId);
+                            return queryRef;
                         },
                         children: [
                             {
