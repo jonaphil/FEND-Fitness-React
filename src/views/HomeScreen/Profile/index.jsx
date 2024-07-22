@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useUserContext } from "@contexts/hooks";
 import Card from "@components/simple Components/Card";
 import ProgressCircle from "@components/simple Components/ProgressCircle/ProgressCircle";
+import LogoutButton from "@components/simple Components/auth0/LogoutButton";
 
 export default function Profile() {
   const { user } = useUserContext();
+  const { isLoading } = useAuth0();
+  if (isLoading) {
+    return <div>is Loading...</div>;
+  }
   return (
     <>
-      <h2 className="self-start">{user.name}</h2>
+      <div className="flex flex-row justify-between self-stretch">
+        <h2 className="">{user.name}</h2>
+        <LogoutButton />
+      </div>
       <div className="mb-9 mt-22 flex flex-col items-center gap-2">
         <img
           className="h-30 w-30 rounded-full bg-gradient-blue"
