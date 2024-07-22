@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ApolloProvider } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import apolloClient from "@contexts/apollo";
+import router from "@contexts/Routing";
 import RouterInsideApolloProvider from "@contexts/providers/RouterInsideApolloProvider";
 import "./index.css";
 import { UserContext } from "@contexts/Context";
@@ -49,7 +51,7 @@ function Main() {
       >
         <ApolloProvider client={apolloClient}>
           <UserContext.Provider value={[user, setUser]}>
-            <RouterInsideApolloProvider />
+            <RouterProvider router={router} />
           </UserContext.Provider>
         </ApolloProvider>
       </Auth0Provider>
