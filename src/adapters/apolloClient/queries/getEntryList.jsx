@@ -1,9 +1,11 @@
-import { apolloClient } from "@contexts/Context";
+import { createQueryPreloader } from "@apollo/client";
+import apolloClient from "@contexts/apollo";
 import GET_ENTRIES from "@adapters/graphQL/queries/GET_ENTRIES";
 
-// FIXME function has to be async??
 export default function getEntryList() {
-  const result = apolloClient.query({ query: GET_ENTRIES });
-
-  return result;
+  const preloadQuery = createQueryPreloader(apolloClient);
+  const promise = preloadQuery(GET_ENTRIES, {
+    context: { destination: "hygraph" },
+  }).toPromise();
+  return promise;
 }
