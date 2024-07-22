@@ -9,7 +9,7 @@ export default function getRandomWorkoutMutation(exerciseList) {
     generateWorkoutExercisesList(exerciseList);
 
   const ADD_RANDOM_WORKOUT = gql`
-    mutation AddWorkout${getRandomString(5)} {
+    mutation HygraphAddWorkout${getRandomString(5)} {
       createWorkout(
         data: {
           name: "Workoutey ${getRandom(names)}", 

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "@contexts/hooks";
 import Card from "@components/simple Components/Card";
+import LoginButton from "@components/simple Components/auth0/LoginButton";
 import WomanSVG from "@assets/icons/WomanYoga.svg?react";
 
 // import "../output.css";
@@ -10,7 +11,10 @@ export default function Dashboard() {
   const { user } = useUserContext();
   return (
     <>
-      <h1 className="self-start">Hi {user.name}!</h1>
+      <div className="flex flex-row items-center justify-between self-stretch">
+        <h1 className="">Hi {user.name}!</h1>
+        <LoginButton />
+      </div>
       {/* FIXME Correct way of using a picture? as an svg?*/}
       <WomanSVG
         className={"mb-6 mt-4 min-h-40 self-center"}

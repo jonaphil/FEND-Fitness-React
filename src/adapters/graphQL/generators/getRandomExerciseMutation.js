@@ -5,7 +5,7 @@ import { getRandomString } from "@utils/random/generator";
 
 export default function getRandomExerciseMutation() {
   const ADD_RANDOM_EXERCISE = gql`
-  mutation Add${getRandomString(5)}{
+  mutation HygraphAdd${getRandomString(5)}{
     createExercise(data:{name: "Exercisey ${getRandom(
       names
     )}", description: "${getRandom(descriptions)}", type: ${getRandom(types)}}){

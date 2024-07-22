@@ -47,9 +47,9 @@ const router = createBrowserRouter([
             element: <ProgramsList />,
             errorElement: <ErrorPage />,
             loader: async () => {
-              const programsPromise = getProgramsList();
+              const queryRefPromise = getProgramsList();
               return defer({
-                promise: programsPromise,
+                queryRefPromise,
               });
             },
           },
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
             path: "generator/",
             element: <CreateEntries />,
             loader: async () => {
-              const entriesPromise = getEntryList();
+              const queryRefPromise = getEntryList();
               return defer({
-                promise: entriesPromise,
+                queryRefPromise,
               });
             },
           },
@@ -78,9 +78,9 @@ const router = createBrowserRouter([
         path: "program/:programId/",
         element: <Program />,
         loader: async ({ params }) => {
-          const promise = getProgramDetails(params.programId);
+          const queryRefPromise = getProgramDetails(params.programId);
           return defer({
-            promise,
+            queryRefPromise,
           });
         },
         children: [
@@ -103,10 +103,8 @@ const router = createBrowserRouter([
             element: <Workout />,
             id: "workout",
             loader: ({ params }) => {
-              const promise = getWorkoutDetails(params.workoutId);
-              return defer({
-                promise,
-              });
+              const queryRef = getWorkoutDetails(params.workoutId);
+              return queryRef;
             },
             children: [
               {

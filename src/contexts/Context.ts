@@ -95,8 +95,3 @@ export interface UserType {
 export const ProgramContext = createContext({});
 export const UserContext = createContext({});
 export const ExerciseTheme = createContext({});
-
-export const apolloClient = new ApolloClient({
-  uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cluu29pkz000008l91dji8p5l/master",
-  cache: new InMemoryCache(),
-});

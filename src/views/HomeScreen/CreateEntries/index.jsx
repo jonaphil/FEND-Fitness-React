@@ -13,7 +13,7 @@ import {
 export default function CreateEntries() {
   // const { exerciseList, programsList, workoutList, assetList } =
   //   useUpdatedEntries;
-  const { promise } = useLoaderData();
+  const { queryRefPromise } = useLoaderData();
 
   return (
     <>
@@ -29,9 +29,9 @@ export default function CreateEntries() {
           </Card>
         }
       >
-        <Await resolve={promise} errorElement={<ErrorElement />}>
-          {(fetched) => {
-            return <GeneratorButtonsResolved promise={fetched} />;
+        <Await resolve={queryRefPromise} errorElement={<ErrorElement />}>
+          {(queryRef) => {
+            return <GeneratorButtonsResolved queryRef={queryRef} />;
           }}
         </Await>
       </Suspense>
@@ -39,9 +39,9 @@ export default function CreateEntries() {
   );
 }
 
-function GeneratorButtonsResolved({ promise }) {
-  console.log(promise);
-  const { data } = useReadQuery(promise);
+function GeneratorButtonsResolved({ queryRef }) {
+  console.log(queryRef);
+  const { data } = useReadQuery(queryRef);
   const { assets } = data;
 
   // TODO Update/Refetch data after successfull addition
