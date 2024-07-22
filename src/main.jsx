@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { ApolloProvider } from "@apollo/client";
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import apolloClient from "@contexts/apollo";
+import RouterInsideApolloProvider from "@contexts/providers/RouterInsideApolloProvider";
 import "./index.css";
-import { UserContext, apolloClient } from "@contexts/Context";
-import router from "./Routing";
+import { UserContext } from "@contexts/Context";
+
+loadDevMessages();
+loadErrorMessages();
 
 // React general
 const container = document.getElementById("root");
@@ -14,13 +19,13 @@ function Main() {
   const userData = {
     name: "Otto",
     id: "18fj384",
-    image: "/media/images/exampleUser.jpg",
+    image: "/assets/images/exampleUser.jpg",
     current: {
       day: 1,
       programId: "",
       programName: "Musterprogramm",
-      length: 25, //FIXME: Has to be generated!
-      progress: 28, //FIXME: Has to be calculated!
+      length: 25, // FIXME: Has to be generated!
+      progress: 28, // FIXME: Has to be calculated!
       workout: {
         id: "",
         duration: 26,
@@ -35,11 +40,19 @@ function Main() {
 
   return (
     <React.StrictMode>
-      <ApolloProvider client={apolloClient}>
-        <UserContext.Provider value={[user, setUser]}>
-          <RouterProvider router={router} />
-        </UserContext.Provider>
-      </ApolloProvider>
+      <Auth0Provider
+        domain={"dev-qbdphcrys1mtef2n.us.auth0.com"}
+        clientId={"5wlzsNctSqIOtuGZNKB9yF6uYCQwkht3"}
+        authorizationParams={{
+          redirect_uri: "http://localhost:5173/home/profile",
+        }}
+      >
+        <ApolloProvider client={apolloClient}>
+          <UserContext.Provider value={[user, setUser]}>
+            <RouterInsideApolloProvider />
+          </UserContext.Provider>
+        </ApolloProvider>
+      </Auth0Provider>
     </React.StrictMode>
   );
 }

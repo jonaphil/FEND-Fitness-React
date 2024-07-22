@@ -38,11 +38,22 @@ dist-ssr
 # vim
 *.vim
 
-# Notes
-Notes.md
-
 # other Repos
 Toms-Repo/
 Toms-Repo/*
 Maltes-Repo/
 Maltes-Repo/*
+
+# Troubleshooting
+troubleshooting/
+troubleshooting/*
+
+# Backend
+hasura/
+hasura/*
+
+# etc
+Notes.md
+Tutorial.md
+backup/
+backup/*
