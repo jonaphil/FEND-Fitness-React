@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import InfoDot from "./InfoDot";
 import XClose from "@assets/icons/X-close.svg?react";
-import germanTranslation from "@utils/helpers/translations";
+import germanTranslation from "@utils/lang/translations";
 
 export default function ProgramHero({ name, focus, difficulty, duration }) {
   const colorDifficulty = {
