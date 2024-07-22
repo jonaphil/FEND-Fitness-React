@@ -7,8 +7,6 @@ import { useReadQuery } from "@apollo/client";
 
 export default function ProgramsList() {
   const loaderData = useLoaderData();
-  console.log("loaderData:");
-  console.log(loaderData);
   return (
     <>
       <h2 className="mb-10 self-start">Browse</h2>
@@ -33,8 +31,6 @@ export default function ProgramsList() {
 }
 
 function ProgramsListResolved({ queryRef }) {
-  console.log("queryRef:");
-  console.log(queryRef);
   const { data } = useReadQuery(queryRef);
   return <CardList listArray={data.programs} />;
 }
