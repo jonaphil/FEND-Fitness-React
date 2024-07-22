@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/Context";
 
 export default function useUserContext() {
-  const [user, setUser] = useContext(UserContext);
-  const [programIsFinished, setProgramIsFinished] = useContext(false);
+  const [user, setUser] = useContext(UserContext); // FIXME
+  const [programIsFinished, setProgramIsFinished] = useState(false);
   const navigate = useNavigate();
 
   const setUserProgram = (program) => {
