@@ -6,21 +6,6 @@ import {
 
 type Focus = "mobility" | "cardio" | "weightTraining" | "coordination";
 
-export interface User {
-  name: string;
-  current: {
-    day: number;
-    programId: string;
-    programName: string;
-    exercise: {
-      duration: number;
-      focus: Focus;
-    };
-  };
-  lastTimeTrained: number;
-  daysInARow: number;
-}
-
 export interface ProgramType {
   id: string;
   name: string;

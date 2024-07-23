@@ -69,6 +69,11 @@ module.exports = {
     "text-ddark",
     "text-dmedium",
     "text-dlight",
+    "rounded-md",
+    "rounded-lg",
+    "rounded-xl",
+    "rounded-2xl",
+    "rounded-3xl",
 
     // DescriptionCard
     "-translate-3/4screen",

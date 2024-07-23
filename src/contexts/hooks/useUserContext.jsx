@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import SET_USER_PROGRAM from "@adapters/graphQL/mutation/userData/SET_USER_PROGRAM";
 import { UserContext } from "@contexts/Context";
 
+/* Deconstruct useUserContext:
+  -> useUserData(UserContext) => {userData, setUserData, setThis, setThat}
+*/
 export default function useUserContext() {
-  const [user, setUser, idJWT] = useContext(UserContext);
-  const [programIsFinished, setProgramIsFinished] = useState(false);
-  const [setUserProgramRemote] = useMutation(SET_USER_PROGRAM);
+  const { user, setUser, idJWT, contextUserProgram, setContextUserProgram } =
+    useContext(UserContext);
+  const [setRemoteUserProgram] = useMutation(SET_USER_PROGRAM);
   const navigate = useNavigate();
 
   const setUserProgram = (program) => {
@@ -28,50 +31,39 @@ export default function useUserContext() {
         },
       },
     });
-    setUserProgramRemote({
+    setContextUserProgram(program);
+    setRemoteUserProgram({
       context: { authToken: idJWT, apiName: "hasura" },
       variables: {
         userId: user.id,
         currentProgramId: id,
       },
       onCompleted: () => {
-        console.log("userUpdate on Program successfully sent to Server!");
+        console.log("Program of user successfully updated on Server!");
       },
-      onError: (error) => {
-        console.log(error);
+      onError: (e) => {
+        console.log(e);
       },
     });
     navigate("/training/start/");
   };
 
-  const voteWorkout = (vote) => {
-    // TODO Post Vote to Hasura
-    console.log(`You voted ${vote} for this Workout!`);
-  };
-  const voteProgram = (vote) => {
-    // TODO Post Vote to Hasura
-    console.log(`You voted ${vote} for this Program!`);
-  };
-
-  const reviewWorkout = (vote) => {
-    voteWorkout(vote);
-    if (user.current.progress === user.current.length) {
-      setProgramIsFinished(true);
-    }
-    // TODO
-    // Check last day trained => if yesterday: {streak+1} if today: {} else: {streak = 1}
-    // Update: Last time trained
-    // Update: current.workout, progress
-  };
-  const reviewProgram = (vote) => {
-    voteProgram(vote);
+  const resetUserProgram = () => {
+    setUser((prevUser) => {
+      return {
+        ...prevUser,
+        current: {},
+      };
+    });
   };
 
+  const setUserWorkout = (day, program) => {};
   return {
     user,
-    programIsFinished,
+    idJWT,
+    contextUserProgram,
     setUserProgram,
-    reviewWorkout,
-    reviewProgram,
+    resetUserProgram,
+    setUser,
   };
 }

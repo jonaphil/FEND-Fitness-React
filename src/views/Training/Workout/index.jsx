@@ -8,7 +8,6 @@ import Header from "@components/Page Components/WorkoutPage/Header";
 export default function Workout(_a) {
     var loaderData = useLoaderData();
     var data = useReadQuery(loaderData).data;
-    console.log(data);
     var _b = useState("default"), exerciseTheme = _b[0], setExerciseTheme = _b[1];
     var exerciseIndex = parseInt(useParams().exerciseIndex, 10);
     var _c = useState(exerciseIndex), currentExercise = _c[0], setCurrentExercise = _c[1];

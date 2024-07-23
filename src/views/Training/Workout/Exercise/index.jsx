@@ -44,7 +44,7 @@ export default function Exercise(_a) {
       <CountScreen currentExercise={currentExercise} numExercises={numExercises} endPause={endPause}>
         <ExerciseCounter key={"".concat(id)} type={type} count={count} id={id} nextStep={!isLast ? doPause : setNextExercise}/>
       </CountScreen>
-      <h1>{name}</h1>
+      <h1 className="text-center">{name}</h1>
       {type === "reps" ? (<Button bgColor={isLast ? "gradient-red" : "dmedium"} textColor={isLast ? "ddark" : "dlight"} onClick={isLast ? setNextExercise : doPause}>
           geschafft
         </Button>) : (<p className="px-6 py-3 opacity-0">geschafft</p>)}
