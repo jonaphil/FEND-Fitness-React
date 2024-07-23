@@ -33,7 +33,7 @@ export default function Card({
     case "m":
       layout.h = "h-fit";
       layout.p = "pt-25 pb-7 px-7";
-      layout.items = "items-stretch";
+      layout.items = "stretch";
       break;
 
     default:
