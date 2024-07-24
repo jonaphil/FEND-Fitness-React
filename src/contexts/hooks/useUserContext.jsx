@@ -4,9 +4,6 @@ import { useMutation } from "@apollo/client";
 import SET_USER_PROGRAM from "@adapters/graphQL/mutation/userData/SET_USER_PROGRAM";
 import { UserContext } from "@contexts/Context";
 
-/* Deconstruct useUserContext:
-  -> useUserData(UserContext) => {userData, setUserData, setThis, setThat}
-*/
 export default function useUserContext() {
   const { user, setUser, idJWT, contextUserProgram, setContextUserProgram } =
     useContext(UserContext);
