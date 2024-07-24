@@ -4,6 +4,8 @@ import Card from "./Card";
 export default function Button({
   textColor = "ddark",
   bgColor = "gradient-red",
+  border = undefined,
+  rounded = "full",
   onClick,
   children,
   small = false,
@@ -24,7 +26,9 @@ export default function Button({
     return (
       <>
         <button
-          className={`bg-${bgColor} rounded-full transition-all duration-500 ${
+          className={`bg-${bgColor} ${border && `border-${border}`} ${
+            rounded && `rounded-${rounded}`
+          } transition-all duration-500 ${
             small
               ? "flex h-7 w-7 flex-row items-center justify-center"
               : "px-6 py-3"
@@ -46,7 +50,9 @@ export default function Button({
 
   return (
     <button
-      className={`bg-${bgColor} rounded-full transition-all duration-500 ${
+      className={`bg-${bgColor} ${border && `border-${border}`} ${
+        rounded && `rounded-${rounded}`
+      } transition-all duration-500 ${
         small
           ? "flex h-7 w-7 flex-row items-center justify-center"
           : "px-6 py-3"

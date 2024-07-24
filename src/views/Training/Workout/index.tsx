@@ -11,8 +11,6 @@ import ErrorElement from "@components/simple Components/ErrorElement";
 export default function Workout({}: {}): React.JSX.Element {
   const loaderData = useLoaderData();
   const { data } = useReadQuery(loaderData);
-  console.log(data);
-
   const [exerciseTheme, setExerciseTheme] = useState("default");
   const exerciseIndex: number = parseInt(useParams().exerciseIndex, 10);
   const [currentExercise, setCurrentExercise] = useState(exerciseIndex);

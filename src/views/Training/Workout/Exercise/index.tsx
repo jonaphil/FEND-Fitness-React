@@ -89,7 +89,7 @@ export default function Exercise({}): React.JSX.Element {
           nextStep={!isLast ? doPause : setNextExercise}
         />
       </CountScreen>
-      <h1>{name}</h1>
+      <h1 className="text-center">{name}</h1>
       {type === "reps" ? (
         <Button
           bgColor={isLast ? "gradient-red" : "dmedium"}

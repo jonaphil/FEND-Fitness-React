@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function useAuthQuery(query, options) {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
   const [idToken, setIdToken] = useState();
+  const [authenticatedQuery] = useLazyQuery(query); // FIXME: Use Hooks at the toplevel!
 
   useEffect(() => {
     async function getAndSetIdToken() {
       const idTokenClaims = await getIdTokenClaims();
-      setIdToken(idTokenClaims.__raw);
+      setIdToken(`Bearer ${idTokenClaims.__raw}`);
     }
     if (isAuthenticated) {
       getAndSetIdToken();
@@ -22,7 +23,7 @@ export default function useAuthQuery(query, options) {
   };
 
   if (idToken) {
-    const queryObj = useQuery(query, optionsWithAuthToken);
+    const queryObj = authenticatedQuery(optionsWithAuthToken); // FIXME: Use Hooks at the toplevel!
     return queryObj;
   }
   return { data: undefined, loading: true, error: undefined };

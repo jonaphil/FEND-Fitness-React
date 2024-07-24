@@ -18,7 +18,7 @@ export default function Dashboard() {
         alt={"Picture of a human, stretching in the morning"}
       />
 
-      {user?.current?.programId ? (
+      {user?.current?.workout ? (
         <>
           <div className="flex items-center justify-between self-stretch">
             <h2>Dein Workout heute</h2>

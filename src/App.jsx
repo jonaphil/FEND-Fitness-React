@@ -11,6 +11,7 @@ import generateCurrentProgramData from "@utils/helpers/generateCurrentProgramDat
 export default function App() {
   const { user: auth0user, isAuthenticated, getIdTokenClaims } = useAuth0();
   const [idJWT, setIdJWT] = useState();
+  const [contextUserProgram, setContextUserProgram] = useState();
   const [fetchUserData] = useLazyQuery(GET_USER_DATA);
   const [fetchProgramData] = useLazyQuery(GET_PROGRAM_DETAILS);
 
@@ -26,7 +27,7 @@ export default function App() {
 
   /*
   Login
-    The following effect is ececuted in the scope of the ContextProvider.
+    The following effect is executed in the scope of the ContextProvider.
     executed when:
       - LoginStatus changes
       - auth0userData changes
@@ -76,11 +77,11 @@ export default function App() {
               },
               onCompleted: (programData) => {
                 console.log(userData);
+                setContextUserProgram(programData.programs[0]);
                 const currentProgramData = generateCurrentProgramData(
                   userData.current.day,
                   programData.programs[0]
                 );
-
                 userData = {
                   ...userData,
                   current: currentProgramData,
@@ -107,10 +108,18 @@ export default function App() {
     } else {
       setUser(defaultUser);
     }
-  }, [isAuthenticated, auth0user]);
+  }, [isAuthenticated, auth0user]); // Suspensible!?
 
   return (
-    <UserContext.Provider value={[user, setUser, idJWT]}>
+    <UserContext.Provider
+      value={{
+        user,
+        idJWT,
+        contextUserProgram,
+        setUser,
+        setContextUserProgram,
+      }}
+    >
       <RouterProvider router={router} />
     </UserContext.Provider>
   );

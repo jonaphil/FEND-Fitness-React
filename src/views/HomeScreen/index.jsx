@@ -1,6 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { gql } from "@apollo/client";
-import { useAuthQuery } from "../../contexts/hooks";
 import Navi from "@components/Page Components/HomeScreenPage/Navi";
 
 export default function HomeScreen({ children }) {

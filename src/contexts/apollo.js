@@ -28,6 +28,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
+//TODO inject authToken directly into apolloClient and not every time again by the query/mutation.
 const authLink = new ApolloLink((operation, forward) => {
   const { authToken } = operation.getContext();
   operation.setContext((context) => {

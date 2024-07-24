@@ -14,7 +14,7 @@ interface HeaderProps {
 
 export default function StartWorkout(): React.JSX.Element {
   //FIXME Use UserContext instead of ProgramContext!
-  const { user } = useUserContext() as UserType;
+  const { user } = useUserContext();
   const { id, current } = user;
   const { day, name, workout } = current;
   return (
