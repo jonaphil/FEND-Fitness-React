@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 const GET_PROGRAM_DETAILS = gql`
   query HygraphGetProgramDetails($programId: ID!) {
     programs(where: { id: $programId }) {

@@ -7,40 +7,41 @@ import {
 type Focus = "mobility" | "cardio" | "weightTraining" | "coordination";
 
 export interface User {
-  name: String;
+  name: string;
   current: {
-    day: Number;
-    programId: String;
-    programName: String;
+    day: number;
+    programId: string;
+    programName: string;
     exercise: {
-      duration: Number;
+      duration: number;
       focus: Focus;
     };
   };
-  lastTimeTrained: Number;
-  daysInARow: Number;
+  lastTimeTrained: number;
+  daysInARow: number;
 }
 
 export interface ProgramType {
-  name: String;
+  id: string;
+  name: string;
   difficulty: "easy" | "moderate" | "hard";
   focus: Focus;
-  duration: Number;
-  description: String;
+  duration: number;
+  description: string;
   workoutsWithDay: Array<{
-    day: Number;
+    day: number;
     workout: {
-      id: String;
-      name: String;
+      id: string;
+      name: string;
       category: Focus;
-      duration: Number;
+      duration: number;
     };
   }>;
   stats: {
-    mobility: Number;
-    cardio: Number;
-    weightTraining: Number;
-    coordination: Number;
+    mobility: number;
+    cardio: number;
+    weightTraining: number;
+    coordination: number;
   };
 }
 
@@ -50,7 +51,7 @@ export interface ExerciseWithReps {
     name: string;
     description: string;
   };
-  reps: Number;
+  reps: number;
 }
 
 export interface ExerciseWithDuration {
@@ -59,37 +60,37 @@ export interface ExerciseWithDuration {
     name: string;
     description: string;
   };
-  duration: Number;
+  duration: number;
 }
 
 export interface Workout {
   id: string;
   name: string;
   category: Focus;
-  duration: Number;
+  duration: number;
   exercises: Array<ExerciseWithReps | ExerciseWithDuration>;
 }
 
 export type ExerciseTheme = "default" | "light" | "mono";
 
 export interface UserType {
-  name: String;
-  image: String;
-  id: String;
+  name: string;
+  image: string;
+  id: string;
   current: {
-    day: Number;
-    programId: String;
-    programName: String;
-    length: Number; //FIXME: Has to be generated!
-    progress: Number; //FIXME: Has to be calculated!
+    day: number;
+    programId: string;
+    programName: string;
+    length: number;
+    progress: number;
     workout: {
-      id: String;
-      duration: Number;
-      focus: String;
+      id: string;
+      duration: number;
+      focus: string;
     };
   };
-  lastTimeTrained: String;
-  daysInARow: Number;
+  lastTimeTrained: string;
+  daysInARow: number;
 }
 
 export const ProgramContext = createContext({});

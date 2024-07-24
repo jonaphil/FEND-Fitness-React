@@ -33,11 +33,19 @@ const authLink = new ApolloLink((operation, forward) => {
   operation.setContext((context) => {
     const { headers } = context;
     if (authToken) {
+      if (headers) {
+        return {
+          ...context,
+          headers: {
+            ...headers,
+            authorization: `Bearer ${authToken}`,
+          },
+        };
+      }
       return {
         ...context,
         headers: {
-          authorization: authToken,
-          ...headers,
+          authorization: `Bearer ${authToken}`,
         },
       };
     }
@@ -50,7 +58,7 @@ const additiveLinkHygraph = from([errorLink, httpLinkHygraph]);
 const additiveLinkHasura = from([errorLink, authLink, httpLinkHasura]);
 
 const directionalContentOrOtherLink = new ApolloLink.split(
-  (operation) => operation.getContext().destination === "hygraph",
+  (operation) => operation.getContext().apiName === "hygraph",
   additiveLinkHygraph,
   additiveLinkHasura
 );

@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ApolloProvider } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import apolloClient from "@contexts/apollo";
-import router from "@contexts/Routing";
 import "./index.css";
-import { UserContext } from "@contexts/Context";
+import App from "./App";
 
 loadDevMessages();
 loadErrorMessages();
@@ -17,28 +15,6 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 function Main() {
-  const userData = {
-    name: "Otto",
-    id: "18fj384",
-    image: "/assets/images/exampleUser.jpg",
-    current: {
-      day: 1,
-      programId: "",
-      programName: "Musterprogramm",
-      length: 25, // FIXME: Has to be generated!
-      progress: 28, // FIXME: Has to be calculated!
-      workout: {
-        id: "",
-        duration: 26,
-        focus: "Beweglichkeit",
-      },
-    },
-    lastTimeTrained: null,
-    daysInARow: 0,
-  };
-
-  const [user, setUser] = useState(userData);
-
   return (
     <React.StrictMode>
       <Auth0Provider
@@ -49,9 +25,7 @@ function Main() {
         }}
       >
         <ApolloProvider client={apolloClient}>
-          <UserContext.Provider value={[user, setUser]}>
-            <RouterProvider router={router} />
-          </UserContext.Provider>
+          <App />
         </ApolloProvider>
       </Auth0Provider>
     </React.StrictMode>

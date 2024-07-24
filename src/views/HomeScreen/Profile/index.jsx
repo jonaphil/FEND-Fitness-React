@@ -39,7 +39,7 @@ export default function Profile() {
             <div className="flex flex-col items-stretch">
               <p>{user.current.programName}</p>
               <p className="text-xs">
-                {user.current.day} von {user.current.length} geschafft
+                {user.current.day - 1} von {user.current.length} geschafft
               </p>
             </div>
           </div>

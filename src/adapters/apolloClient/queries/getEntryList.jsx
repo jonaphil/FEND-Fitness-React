@@ -5,7 +5,7 @@ import GET_ENTRIES from "@adapters/graphQL/queries/GET_ENTRIES";
 export default function getEntryList() {
   const preloadQuery = createQueryPreloader(apolloClient);
   const promise = preloadQuery(GET_ENTRIES, {
-    context: { destination: "hygraph" },
+    context: { apiName: "hygraph" },
   }).toPromise();
   return promise;
 }

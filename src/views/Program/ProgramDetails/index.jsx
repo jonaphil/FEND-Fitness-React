@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "@contexts/hooks";
 import ProgramHero from "@components/Page Components/ProgramDetailsPage/ProgramHero";
 import ProgramInfoText from "@components/Page Components/ProgramDetailsPage/ProgramInfo";
@@ -36,7 +35,6 @@ export default function ProgramDetails() {
       <ProgramStats stats={stats} />
       <ProgramDaysList workoutsWithDay={workoutsWithDay} />
       <div className="fixed bottom-8 flex w-full items-center justify-center">
-        {/* <Link to={`../start/`}> */}
         <Button
           onClick={handleProgramStart}
           doubleCheck={
@@ -44,8 +42,7 @@ export default function ProgramDetails() {
             "Wollen Sie wirklich DIESES Programm starten und ihren bisherigen Fortschritt aufgeben?"
           }
         >
-          {/* doubleCheck={
-            "Wollen Sie wirklich dieses Programm neu starten?" /*FIXME Add information about current program! */}
+          {/* Suspense on loading! /*FIXME Add information about current program! */}
           Jetzt starten
         </Button>
         {/* </Link> */}
