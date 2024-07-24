@@ -7,23 +7,49 @@ This Repository is done for educational purposes. It is the first React Project 
 - node.js
 - yarn
 
-## Installation
+# Installation
 
 To check it out, follow these steps:
 
-1. Clone repository:
+1. Clone repository.
+1. Install node dependencies.
+1. Run dev-server.
+  
+  ```bash
+  git clone https://github.com/jonaphil/FEND-Fitness-React
+  cd FEND-Fitness-React
+  yarn
+  yarn dev
   ```
-$ git clone https://github.com/jonaphil/FEND-react-Fitness-App
-```
-
-1. Install node dependencies:
-  ```
-$ yarn
-```
-
-1. Run dev-server:
-```
-$ yarn dev
-```
 
 Project reachable on `https://localhost:5173/` or as stated in the console.
+
+# Stack
+
+## Frontend
+
+- React
+- Apollo Client
+- GraphQL
+- Chart.js
+- React Router
+- auth0/auth0-react
+
+### Dev Dependencies
+
+- Vite
+- eslint
+  - plugins: prettier, react, import, jsx-a11y
+  - config: prettier, airbnb-base
+  - import-resolver-alias
+- prettier (+tailwind-plugin)
+- tailwind
+- postcss
+- autoprefixer
+  
+## Backend
+
+- Authentication: auth0
+- Program Data: hygraph
+- User Data: hasura
+
