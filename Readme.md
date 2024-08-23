@@ -49,7 +49,7 @@ Project reachable on `https://localhost:5173/` or as stated in the console.
   
 ## Backend
 
-- Authentication: auth0
-- Program Data: hygraph
-- User Data: hasura (authenticated with auth0)
+- auth0
+- hygraph (Program Data)
+- hasura (User Data, authenticated with auth0)
 
